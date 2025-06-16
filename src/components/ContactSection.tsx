@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Phone, Mail, MessageSquare } from 'lucide-react';
@@ -8,9 +9,12 @@ const ContactSection = () => {
   const isMobile = useIsMobile();
   const [isCalendlyLoaded, setIsCalendlyLoaded] = useState(false);
   const [isScriptLoaded, setIsScriptLoaded] = useState(false);
+  const initializationAttempted = useRef(false);
 
   useEffect(() => {
-    // Charger le script Calendly s'il n'est pas déjà présent
+    // Éviter la réinitialisation multiple
+    if (initializationAttempted.current) return;
+
     const loadCalendlyScript = () => {
       return new Promise<void>((resolve, reject) => {
         // Vérifier si le script est déjà chargé
@@ -70,26 +74,26 @@ const ContactSection = () => {
 
     // Séquence de chargement
     const initializeCalendly = async () => {
+      if (initializationAttempted.current) return;
+      
+      initializationAttempted.current = true;
+      
       try {
         await loadCalendlyScript();
         // Attendre un court délai pour s'assurer que le DOM est prêt
         setTimeout(() => {
-          if (calendlyRef.current) {
+          if (calendlyRef.current && !isCalendlyLoaded) {
             initCalendly();
           }
-        }, 100);
+        }, 50);
       } catch (error) {
         console.error('Failed to initialize Calendly:', error);
+        initializationAttempted.current = false; // Permettre une nouvelle tentative
       }
     };
 
     initializeCalendly();
-
-    // Cleanup function
-    return () => {
-      setIsCalendlyLoaded(false);
-    };
-  }, [isCalendlyLoaded]);
+  }, []); // Dépendances vides pour éviter les réinitialisations
 
   return (
     <section data-section="contact" className="py-20 px-4">

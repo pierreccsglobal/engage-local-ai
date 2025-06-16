@@ -1,5 +1,4 @@
-
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Phone, Mail, MessageSquare } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -7,56 +6,90 @@ import { useIsMobile } from '@/hooks/use-mobile';
 const ContactSection = () => {
   const calendlyRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
+  const [isCalendlyLoaded, setIsCalendlyLoaded] = useState(false);
+  const [isScriptLoaded, setIsScriptLoaded] = useState(false);
 
   useEffect(() => {
-    const initCalendly = () => {
-      // Vérifier que Calendly est disponible et que l'élément existe
-      if (window.Calendly && calendlyRef.current) {
-        console.log('Initializing Calendly widget...');
-        try {
-          window.Calendly.initInlineWidget({
-            url: 'https://calendly.com/creatoreconomy/nouvelle-reunion?primary_color=ecc14e',
-            parentElement: calendlyRef.current,
-            prefill: {},
-            utm: {}
-          });
-          console.log('Calendly widget initialized successfully');
-        } catch (error) {
-          console.error('Error initializing Calendly widget:', error);
-        }
-      }
-    };
-
-    // Attendre que le composant soit monté et l'élément disponible
-    const checkAndInit = () => {
-      if (calendlyRef.current) {
+    // Charger le script Calendly s'il n'est pas déjà présent
+    const loadCalendlyScript = () => {
+      return new Promise<void>((resolve, reject) => {
+        // Vérifier si le script est déjà chargé
         if (window.Calendly) {
-          initCalendly();
-        } else {
-          // Attendre que le script Calendly soit chargé avec un délai plus court
-          const checkCalendly = setInterval(() => {
-            if (window.Calendly && calendlyRef.current) {
-              clearInterval(checkCalendly);
-              initCalendly();
-            }
-          }, 50); // Réduction du délai de 100ms à 50ms
-
-          // Nettoyer l'intervalle après 10 secondes au lieu de 15
-          setTimeout(() => {
-            clearInterval(checkCalendly);
-            console.warn('Calendly script failed to load within 10 seconds');
-          }, 10000);
+          setIsScriptLoaded(true);
+          resolve();
+          return;
         }
+
+        // Vérifier si le script existe déjà dans le DOM
+        const existingScript = document.querySelector('script[src*="calendly.com"]');
+        if (existingScript) {
+          existingScript.addEventListener('load', () => {
+            setIsScriptLoaded(true);
+            resolve();
+          });
+          return;
+        }
+
+        // Créer et injecter le script Calendly
+        const script = document.createElement('script');
+        script.src = 'https://assets.calendly.com/assets/external/widget.js';
+        script.async = true;
+        
+        script.onload = () => {
+          console.log('Calendly script loaded successfully');
+          setIsScriptLoaded(true);
+          resolve();
+        };
+        
+        script.onerror = () => {
+          console.error('Failed to load Calendly script');
+          reject(new Error('Failed to load Calendly script'));
+        };
+
+        document.head.appendChild(script);
+      });
+    };
+
+    const initCalendly = () => {
+      if (!calendlyRef.current || !window.Calendly || isCalendlyLoaded) return;
+
+      try {
+        console.log('Initializing Calendly widget...');
+        window.Calendly.initInlineWidget({
+          url: 'https://calendly.com/creatoreconomy/nouvelle-reunion?primary_color=ecc14e',
+          parentElement: calendlyRef.current,
+          prefill: {},
+          utm: {}
+        });
+        setIsCalendlyLoaded(true);
+        console.log('Calendly widget initialized successfully');
+      } catch (error) {
+        console.error('Error initializing Calendly widget:', error);
       }
     };
 
-    // Réduction du délai initial de 100ms à 50ms
-    const timer = setTimeout(checkAndInit, 50);
-
-    return () => {
-      clearTimeout(timer);
+    // Séquence de chargement
+    const initializeCalendly = async () => {
+      try {
+        await loadCalendlyScript();
+        // Attendre un court délai pour s'assurer que le DOM est prêt
+        setTimeout(() => {
+          if (calendlyRef.current) {
+            initCalendly();
+          }
+        }, 100);
+      } catch (error) {
+        console.error('Failed to initialize Calendly:', error);
+      }
     };
-  }, []);
+
+    initializeCalendly();
+
+    // Cleanup function
+    return () => {
+      setIsCalendlyLoaded(false);
+    };
+  }, [isCalendlyLoaded]);
 
   return (
     <section data-section="contact" className="py-20 px-4">
@@ -81,7 +114,7 @@ const ContactSection = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-4">
-              {/* Widget Calendly avec styles responsifs améliorés */}
+              {/* Widget Calendly */}
               <div 
                 ref={calendlyRef}
                 className="calendly-inline-widget w-full overflow-hidden rounded-lg" 
@@ -92,14 +125,25 @@ const ContactSection = () => {
                   minHeight: '400px'
                 }}
               >
-                {/* Fallback content pendant le chargement - amélioré */}
-                <div className="flex items-center justify-center h-full bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-lg border border-gold-500/20">
-                  <div className="text-center p-8">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gold-400 mx-auto mb-4"></div>
-                    <p className="text-gray-300 font-medium">Chargement du calendrier...</p>
-                    <p className="text-gray-500 text-sm mt-2">Préparation de votre espace de réservation</p>
+                {/* Fallback content pendant le chargement */}
+                {!isCalendlyLoaded && (
+                  <div className="flex items-center justify-center h-full bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-lg border border-gold-500/20">
+                    <div className="text-center p-8">
+                      {isScriptLoaded ? (
+                        <>
+                          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gold-400 mx-auto mb-4"></div>
+                          <p className="text-gray-300 font-medium">Initialisation du calendrier...</p>
+                        </>
+                      ) : (
+                        <>
+                          <div className="animate-pulse h-8 w-8 bg-gold-400 rounded-full mx-auto mb-4"></div>
+                          <p className="text-gray-300 font-medium">Chargement du script...</p>
+                        </>
+                      )}
+                      <p className="text-gray-500 text-sm mt-2">Préparation de votre espace de réservation</p>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </CardContent>
           </Card>

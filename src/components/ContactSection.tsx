@@ -135,7 +135,9 @@ const ContactSection = () => {
                   <Phone className="w-8 h-8 text-gold-400 mr-4" />
                   <div>
                     <h3 className="text-xl font-semibold text-white">Appelez-nous</h3>
-                    <p className="text-gray-300">06 27 67 57 14</p>
+                    <a href="tel:0627675714" className="text-gray-300 hover:text-gold-400 transition-colors">
+                      06 27 67 57 14
+                    </a>
                     <p className="text-sm text-gray-400">Lun-Ven 9h-18h</p>
                   </div>
                 </div>
@@ -148,7 +150,9 @@ const ContactSection = () => {
                   <Mail className="w-8 h-8 text-gold-400 mr-4" />
                   <div>
                     <h3 className="text-xl font-semibold text-white">Écrivez-nous</h3>
-                    <p className="text-gray-300">contact@agence-ia-local.fr</p>
+                    <a href="mailto:contact@agence-ia-local.fr" className="text-gray-300 hover:text-gold-400 transition-colors">
+                      contact@agence-ia-local.fr
+                    </a>
                     <p className="text-sm text-gray-400">Réponse sous 2h</p>
                   </div>
                 </div>

@@ -41,11 +41,15 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center text-gray-200">
                 <Phone className="w-5 h-5 text-gold-400 mr-3" />
-                06 27 67 57 14
+                <a href="tel:0627675714" className="hover:text-gold-400 transition-colors">
+                  06 27 67 57 14
+                </a>
               </div>
               <div className="flex items-center text-gray-200">
                 <Mail className="w-5 h-5 text-gold-400 mr-3" />
-                contact@leadprospect.fr
+                <a href="mailto:contact@leadprospect.fr" className="hover:text-gold-400 transition-colors">
+                  contact@leadprospect.fr
+                </a>
               </div>
               <div className="flex items-center text-gray-200">
                 <MapPin className="w-5 h-5 text-gold-400 mr-3" />

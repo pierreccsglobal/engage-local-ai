@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Phone, Mail, MessageSquare } from 'lucide-react';
@@ -56,9 +55,7 @@ const ContactSection = () => {
           url: 'https://calendly.com/creatoreconomy/nouvelle-reunion?primary_color=ecc14e&embed_domain=' + encodeURIComponent(window.location.hostname),
           parentElement: calendlyRef.current,
           prefill: {},
-          utm: {},
-          // Ajouter des options pour améliorer la compatibilité cross-origin
-          embedType: 'Inline'
+          utm: {}
         });
 
         isInitialized.current = true;

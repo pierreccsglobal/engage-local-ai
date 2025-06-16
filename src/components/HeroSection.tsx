@@ -1,9 +1,38 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowRight, Bot, Zap, Target } from 'lucide-react';
 import Logo from './Logo';
 
 const HeroSection = () => {
+  const [counters, setCounters] = useState({
+    conversion: 0,
+    roi: 0
+  });
+
+  useEffect(() => {
+    // Animation des compteurs
+    const duration = 2000; // 2 secondes
+    const steps = 60; // 60 étapes pour une animation fluide
+    const interval = duration / steps;
+
+    let step = 0;
+    const timer = setInterval(() => {
+      step++;
+      const progress = step / steps;
+      
+      setCounters({
+        conversion: Math.floor(progress * 100),
+        roi: Math.floor(progress * 5)
+      });
+
+      if (step >= steps) {
+        clearInterval(timer);
+        setCounters({ conversion: 100, roi: 5 });
+      }
+    }, interval);
+
+    return () => clearInterval(timer);
+  }, []);
+
   const scrollToContact = () => {
     const contactSection = document.querySelector('[data-section="contact"]');
     if (contactSection) {
@@ -43,20 +72,20 @@ const HeroSection = () => {
           déployons des agents IA 24/7 pour maximiser vos conversions.
         </p>
 
-        {/* Statistiques rapides avec animation d'apparition en cascade */}
+        {/* Statistiques rapides avec animation de compteur */}
         <div className="flex flex-wrap justify-center gap-8 mb-12">
           <div className="bg-zinc-900/60 backdrop-blur-sm border border-gold-500/30 rounded-lg px-6 py-4 animate-fade-in animation-delay-600 hover:scale-105 hover:border-gold-400/60 transition-all duration-300 hover:shadow-lg hover:shadow-gold-500/30">
             <div className="flex items-center">
-              <Bot className="w-6 h-6 text-gold-400 mr-3 animate-pulse" />
+              <Bot className="w-6 h-6 text-gold-400 mr-3" />
               <div>
-                <div className="text-2xl font-bold text-gold-400">+100%</div>
+                <div className="text-2xl font-bold text-gold-400">+{counters.conversion}%</div>
                 <div className="text-sm text-gray-300">Conversions</div>
               </div>
             </div>
           </div>
           <div className="bg-zinc-900/60 backdrop-blur-sm border border-gold-500/30 rounded-lg px-6 py-4 animate-fade-in animation-delay-700 hover:scale-105 hover:border-gold-400/60 transition-all duration-300 hover:shadow-lg hover:shadow-gold-500/30">
             <div className="flex items-center">
-              <Zap className="w-6 h-6 text-gold-400 mr-3 animate-pulse delay-100" />
+              <Zap className="w-6 h-6 text-gold-400 mr-3" />
               <div>
                 <div className="text-2xl font-bold text-gold-400">24/7</div>
                 <div className="text-sm text-gray-300">Disponible</div>
@@ -65,20 +94,20 @@ const HeroSection = () => {
           </div>
           <div className="bg-zinc-900/60 backdrop-blur-sm border border-gold-500/30 rounded-lg px-6 py-4 animate-fade-in animation-delay-800 hover:scale-105 hover:border-gold-400/60 transition-all duration-300 hover:shadow-lg hover:shadow-gold-500/30">
             <div className="flex items-center">
-              <Target className="w-6 h-6 text-gold-400 mr-3 animate-pulse delay-200" />
+              <Target className="w-6 h-6 text-gold-400 mr-3" />
               <div>
-                <div className="text-2xl font-bold text-gold-400">ROI x5</div>
+                <div className="text-2xl font-bold text-gold-400">ROI x{counters.roi}</div>
                 <div className="text-sm text-gray-300">Garanti</div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Boutons d'action avec animations */}
+        {/* Boutons d'action avec animation de mouvement */}
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-fade-in animation-delay-1000">
           <button 
             onClick={scrollToContact}
-            className="group bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 text-black px-8 py-4 rounded-full font-semibold text-lg shadow-lg shadow-gold-500/30 hover:shadow-xl hover:shadow-gold-400/40 transform hover:scale-105 transition-all duration-300 flex items-center hover:from-gold-400 hover:via-gold-300 hover:to-gold-200 animate-pulse hover:animate-none"
+            className="group bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 text-black px-8 py-4 rounded-full font-semibold text-lg shadow-lg shadow-gold-500/30 hover:shadow-xl hover:shadow-gold-400/40 transform hover:scale-105 transition-all duration-300 flex items-center hover:from-gold-400 hover:via-gold-300 hover:to-gold-200 animate-bounce-gentle"
           >
             Démarrer Maintenant
             <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />

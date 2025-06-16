@@ -1,12 +1,61 @@
-
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { TrendingUp, Clock, DollarSign, Users } from 'lucide-react';
 
 const StatsSection = () => {
+  const [counters, setCounters] = useState({
+    conversion: 0,
+    roi: 0,
+    satisfaction: 0
+  });
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+          // Démarrer l'animation des compteurs
+          animateCounters();
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [isVisible]);
+
+  const animateCounters = () => {
+    const duration = 2500;
+    const steps = 60;
+    const interval = duration / steps;
+
+    let step = 0;
+    const timer = setInterval(() => {
+      step++;
+      const progress = step / steps;
+      
+      setCounters({
+        conversion: Math.floor(progress * 100),
+        roi: Math.floor(progress * 5),
+        satisfaction: Math.floor(progress * 95)
+      });
+
+      if (step >= steps) {
+        clearInterval(timer);
+        setCounters({ conversion: 100, roi: 5, satisfaction: 95 });
+      }
+    }, interval);
+  };
+
   const stats = [
     {
       icon: TrendingUp,
-      value: "+100%",
+      value: `+${counters.conversion}%`,
       label: "Augmentation moyenne des conversions",
       description: "Grâce à notre infrastructure IA complète"
     },
@@ -18,20 +67,20 @@ const StatsSection = () => {
     },
     {
       icon: DollarSign,
-      value: "ROI x5",
+      value: `ROI x${counters.roi}`,
       label: "Retour sur investissement moyen",
       description: "Mesuré sur 12 mois d'accompagnement"
     },
     {
       icon: Users,
-      value: "95%",
+      value: `${counters.satisfaction}%`,
       label: "Taux de satisfaction client",
       description: "Entreprises qui nous recommandent"
     }
   ];
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-r from-zinc-900/60 via-black/80 to-zinc-800/60">
+    <section ref={sectionRef} className="py-20 px-4 bg-gradient-to-r from-zinc-900/60 via-black/80 to-zinc-800/60">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">

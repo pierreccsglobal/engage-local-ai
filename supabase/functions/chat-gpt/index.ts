@@ -1,4 +1,3 @@
-
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
@@ -42,6 +41,7 @@ TON COMPORTEMENT :
 - Récupère ses informations de contact (nom, email, téléphone, entreprise)
 - Présente les services de Lead Prospect de manière adaptée
 - Oriente vers une prise de contact ou un rendez-vous
+- GARDE TES RÉPONSES COURTES ET DIRECTES (maximum 2-3 phrases)
 
 STRATÉGIE DE QUALIFICATION :
 - Découvre le secteur d'activité de l'utilisateur
@@ -50,7 +50,7 @@ STRATÉGIE DE QUALIFICATION :
 - Identifie son niveau d'urgence
 - Collecte ses coordonnées pour le suivi
 
-Sois chaleureux, professionnel et à l'écoute. Adapte ton discours selon le profil de l'utilisateur.`
+Sois chaleureux, professionnel et à l'écoute. Adapte ton discours selon le profil de l'utilisateur. Privilégie la concision et l'efficacité.`
       },
       ...conversationHistory,
       { role: 'user', content: message }

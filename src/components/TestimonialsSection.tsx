@@ -39,13 +39,13 @@ const TestimonialsSection = () => {
     <section className="py-20 px-4 bg-gradient-to-b from-black/80 to-zinc-900/60">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
             Ce Que Disent Nos{' '}
             <span className="bg-gradient-to-r from-gold-400 to-gold-500 bg-clip-text text-transparent">
               Clients
             </span>
           </h2>
-          <p className="text-xl text-gray-200 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-200 max-w-3xl mx-auto animate-fade-in animation-delay-200">
             Des entreprises locales qui ont transformé leur activité grâce à notre infrastructure IA
           </p>
         </div>
@@ -54,31 +54,36 @@ const TestimonialsSection = () => {
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index}
-              className="bg-zinc-900/90 backdrop-blur-sm border border-gold-500/30 hover:border-gold-400/50 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-gold-500/20"
+              className="bg-zinc-900/90 backdrop-blur-sm border border-gold-500/30 hover:border-gold-400/50 transition-all duration-500 transform hover:scale-105 hover:-rotate-1 shadow-lg shadow-gold-500/20 hover:shadow-xl hover:shadow-gold-400/30 animate-fade-in group"
+              style={{ animationDelay: `${index * 200}ms` }}
             >
               <CardContent className="p-8">
                 <div className="flex items-center mb-4">
-                  <Quote className="w-8 h-8 text-gold-400 mr-4" />
+                  <Quote className="w-8 h-8 text-gold-400 mr-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
                   <div className="flex space-x-1">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-gold-400 text-gold-400" />
+                      <Star 
+                        key={i} 
+                        className="w-5 h-5 fill-gold-400 text-gold-400 group-hover:scale-110 transition-transform duration-300" 
+                        style={{ animationDelay: `${i * 100}ms` }}
+                      />
                     ))}
                   </div>
                 </div>
                 
-                <p className="text-gray-200 mb-6 text-lg leading-relaxed">
+                <p className="text-gray-200 mb-6 text-lg leading-relaxed group-hover:text-gray-100 transition-colors duration-300">
                   "{testimonial.content}"
                 </p>
                 
                 <div className="flex items-center">
-                  <div className="w-12 h-12 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 rounded-full flex items-center justify-center text-black font-bold text-lg mr-4 shadow-lg shadow-gold-500/40">
+                  <div className="w-12 h-12 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 rounded-full flex items-center justify-center text-black font-bold text-lg mr-4 shadow-lg shadow-gold-500/40 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                     {testimonial.avatar}
                   </div>
                   <div>
-                    <div className="font-semibold text-white">
+                    <div className="font-semibold text-white group-hover:text-gray-100 transition-colors duration-300">
                       {testimonial.name}
                     </div>
-                    <div className="text-gold-400">
+                    <div className="text-gold-400 group-hover:text-gold-300 transition-colors duration-300">
                       {testimonial.company}
                     </div>
                   </div>

@@ -65,13 +65,13 @@ const ServicesSection = () => {
     <section className="py-20 px-4 bg-gradient-to-b from-black/80 to-zinc-900/50">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
             Notre Infrastructure IA{' '}
             <span className="bg-gradient-to-r from-gold-400 to-gold-500 bg-clip-text text-transparent">
               Complète
             </span>
           </h2>
-          <p className="text-xl text-gray-200 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-200 max-w-3xl mx-auto animate-fade-in animation-delay-200">
             De la création de votre site web à la conversion finale, nous automatisons 
             chaque étape de votre parcours client avec l'intelligence artificielle
           </p>
@@ -81,24 +81,25 @@ const ServicesSection = () => {
           {services.map((service, index) => (
             <Card 
               key={index} 
-              className="bg-zinc-900/90 backdrop-blur-sm border border-gold-500/30 hover:border-gold-400/60 transition-all duration-300 transform hover:scale-105 group shadow-lg shadow-gold-500/20"
+              className="bg-zinc-900/90 backdrop-blur-sm border border-gold-500/30 hover:border-gold-400/60 transition-all duration-500 transform hover:scale-105 group shadow-lg shadow-gold-500/20 hover:shadow-xl hover:shadow-gold-400/30 animate-fade-in"
+              style={{ animationDelay: `${index * 100}ms` }}
             >
               <CardHeader className="text-center">
-                <div className="mx-auto mb-4 p-3 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 rounded-full w-fit group-hover:scale-110 transition-transform shadow-lg shadow-gold-500/40">
+                <div className="mx-auto mb-4 p-3 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 rounded-full w-fit group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 shadow-lg shadow-gold-500/40">
                   <service.icon className="w-8 h-8 text-black" />
                 </div>
-                <CardTitle className="text-xl text-white group-hover:text-gold-300 transition-colors">
+                <CardTitle className="text-xl text-white group-hover:text-gold-300 transition-colors duration-300">
                   {service.title}
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-100 mb-4 text-center font-medium">
+                <p className="text-gray-100 mb-4 text-center font-medium group-hover:text-gray-50 transition-colors duration-300">
                   {service.description}
                 </p>
                 <ul className="space-y-2">
                   {service.features.map((feature, idx) => (
-                    <li key={idx} className="text-sm text-gray-200 flex items-center">
-                      <div className="w-2 h-2 bg-gradient-to-r from-gold-400 to-gold-500 rounded-full mr-3"></div>
+                    <li key={idx} className="text-sm text-gray-200 flex items-center group-hover:text-gray-100 transition-colors duration-300">
+                      <div className="w-2 h-2 bg-gradient-to-r from-gold-400 to-gold-500 rounded-full mr-3 group-hover:scale-125 transition-transform duration-300"></div>
                       {feature}
                     </li>
                   ))}

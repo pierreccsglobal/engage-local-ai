@@ -27,6 +27,7 @@ const Chatbot = () => {
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { toast } = useToast();
 
   const scrollToBottom = () => {
@@ -36,6 +37,13 @@ const Chatbot = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Focus le textarea après chaque réponse du chatbot
+  useEffect(() => {
+    if (!isLoading && textareaRef.current) {
+      textareaRef.current.focus();
+    }
+  }, [isLoading]);
 
   const sendMessage = async () => {
     if (!inputMessage.trim() || isLoading) return;
@@ -168,6 +176,7 @@ const Chatbot = () => {
             <div className="p-3 border-t">
               <div className="flex gap-2">
                 <textarea
+                  ref={textareaRef}
                   value={inputMessage}
                   onChange={(e) => setInputMessage(e.target.value)}
                   onKeyPress={handleKeyPress}

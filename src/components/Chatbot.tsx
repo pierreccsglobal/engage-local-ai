@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
@@ -111,6 +110,7 @@ const Chatbot = () => {
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
           <DialogTrigger asChild>
             <Button
+              data-chatbot-trigger
               className="w-14 h-14 rounded-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 text-black shadow-lg shadow-gold-500/30 hover:shadow-xl hover:shadow-gold-400/40 hover:scale-110 transition-all duration-300"
             >
               <MessageCircle className="w-6 h-6" />

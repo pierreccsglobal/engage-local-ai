@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Bot, Zap, Target } from 'lucide-react';
 import Logo from './Logo';
@@ -57,6 +56,14 @@ const HeroSection = () => {
     const contactSection = document.querySelector('[data-section="contact"]');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const openChatbot = () => {
+    // Déclenche l'ouverture du chatbot en cliquant sur son bouton
+    const chatbotButton = document.querySelector('[data-chatbot-trigger]');
+    if (chatbotButton) {
+      (chatbotButton as HTMLElement).click();
     }
   };
 
@@ -138,7 +145,10 @@ const HeroSection = () => {
             Démarrer Maintenant
             <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
           </button>
-          <button className="border-2 border-gold-400 text-gold-400 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gold-400 hover:text-black transition-all duration-300 backdrop-blur-sm hover:scale-105 hover:shadow-lg hover:shadow-gold-400/30">
+          <button 
+            onClick={openChatbot}
+            className="border-2 border-gold-400 text-gold-400 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gold-400 hover:text-black transition-all duration-300 backdrop-blur-sm hover:scale-105 hover:shadow-lg hover:shadow-gold-400/30"
+          >
             Voir une Démo
           </button>
         </div>

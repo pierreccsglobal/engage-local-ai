@@ -150,8 +150,8 @@ const ContactSection = () => {
                   <Mail className="w-8 h-8 text-gold-400 mr-4" />
                   <div>
                     <h3 className="text-xl font-semibold text-white">Écrivez-nous</h3>
-                    <a href="mailto:contact@agence-ia-local.fr" className="text-gray-300 hover:text-gold-400 transition-colors">
-                      contact@agence-ia-local.fr
+                    <a href="mailto:contact@leadprospect.fr" className="text-gray-300 hover:text-gold-400 transition-colors">
+                      contact@leadprospect.fr
                     </a>
                     <p className="text-sm text-gray-400">Réponse sous 2h</p>
                   </div>

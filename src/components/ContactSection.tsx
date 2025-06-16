@@ -19,6 +19,7 @@ const ContactSection = () => {
         const script = document.createElement('script');
         script.src = 'https://assets.calendly.com/assets/external/widget.js';
         script.async = true;
+        script.crossOrigin = 'anonymous';
         script.onload = () => resolve();
         script.onerror = () => reject(new Error('Failed to load Calendly script'));
         document.head.appendChild(script);
@@ -50,12 +51,14 @@ const ContactSection = () => {
 
         console.log('Initializing Calendly widget...');
         
-        // Initialiser le widget avec des vérifications supplémentaires
+        // Initialiser le widget avec des paramètres pour gérer les cookies cross-origin
         window.Calendly.initInlineWidget({
-          url: 'https://calendly.com/creatoreconomy/nouvelle-reunion?primary_color=ecc14e',
+          url: 'https://calendly.com/creatoreconomy/nouvelle-reunion?primary_color=ecc14e&embed_domain=' + encodeURIComponent(window.location.hostname),
           parentElement: calendlyRef.current,
           prefill: {},
-          utm: {}
+          utm: {},
+          // Ajouter des options pour améliorer la compatibilité cross-origin
+          embedType: 'Inline'
         });
 
         isInitialized.current = true;
@@ -97,7 +100,7 @@ const ContactSection = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-4">
-              {/* Widget Calendly avec ref pour un accès DOM sécurisé */}
+              {/* Widget Calendly avec attributs pour cookies cross-origin */}
               <div 
                 ref={calendlyRef}
                 className="w-full overflow-hidden bg-white rounded-lg" 
@@ -107,6 +110,8 @@ const ContactSection = () => {
                   height: '600px',
                   minHeight: '600px'
                 }}
+                data-embed-type="Inline"
+                data-auto-load="false"
               >
                 {/* Message de chargement */}
                 <div className="flex items-center justify-center h-full text-gray-600">

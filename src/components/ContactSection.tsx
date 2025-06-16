@@ -33,25 +33,25 @@ const ContactSection = () => {
         if (window.Calendly) {
           initCalendly();
         } else {
-          // Attendre que le script Calendly soit chargé
+          // Attendre que le script Calendly soit chargé avec un délai plus court
           const checkCalendly = setInterval(() => {
             if (window.Calendly && calendlyRef.current) {
               clearInterval(checkCalendly);
               initCalendly();
             }
-          }, 100);
+          }, 50); // Réduction du délai de 100ms à 50ms
 
-          // Nettoyer l'intervalle après 15 secondes si Calendly ne charge pas
+          // Nettoyer l'intervalle après 10 secondes au lieu de 15
           setTimeout(() => {
             clearInterval(checkCalendly);
-            console.warn('Calendly script failed to load within 15 seconds');
-          }, 15000);
+            console.warn('Calendly script failed to load within 10 seconds');
+          }, 10000);
         }
       }
     };
 
-    // Utiliser un petit délai pour s'assurer que le DOM est prêt
-    const timer = setTimeout(checkAndInit, 100);
+    // Réduction du délai initial de 100ms à 50ms
+    const timer = setTimeout(checkAndInit, 50);
 
     return () => {
       clearTimeout(timer);
@@ -92,11 +92,12 @@ const ContactSection = () => {
                   minHeight: '400px'
                 }}
               >
-                {/* Fallback content pendant le chargement */}
-                <div className="flex items-center justify-center h-full bg-gray-100 rounded-lg">
+                {/* Fallback content pendant le chargement - amélioré */}
+                <div className="flex items-center justify-center h-full bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-lg border border-gold-500/20">
                   <div className="text-center p-8">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gold-400 mx-auto mb-4"></div>
-                    <p className="text-gray-600">Chargement du calendrier...</p>
+                    <p className="text-gray-300 font-medium">Chargement du calendrier...</p>
+                    <p className="text-gray-500 text-sm mt-2">Préparation de votre espace de réservation</p>
                   </div>
                 </div>
               </div>

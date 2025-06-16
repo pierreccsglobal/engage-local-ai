@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { Bot, Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
+import Logo from './Logo';
 
 const Footer = () => {
   return (
@@ -9,16 +10,15 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Logo et description */}
           <div>
-            <div className="flex items-center mb-4">
-              <Bot className="w-8 h-8 text-gold-400 mr-3" />
-              <h3 className="text-2xl font-bold text-white">IA Local Pro</h3>
+            <div className="mb-4">
+              <Logo />
             </div>
             <p className="text-gray-200 mb-4">
               L'agence web spécialisée en IA conversationnelle pour les entreprises locales. 
               Nous créons votre site web puis transformons vos visiteurs en clients grâce à l'intelligence artificielle.
             </p>
             <div className="text-sm text-gray-300">
-              © 2024 IA Local Pro. Tous droits réservés.
+              © 2024 Lead Prospect. Tous droits réservés.
             </div>
           </div>
 
@@ -45,7 +45,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center text-gray-200">
                 <Mail className="w-5 h-5 text-gold-400 mr-3" />
-                contact@agence-ia-local.fr
+                contact@leadprospect.fr
               </div>
               <div className="flex items-center text-gray-200">
                 <MapPin className="w-5 h-5 text-gold-400 mr-3" />

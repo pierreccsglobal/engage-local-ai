@@ -11,7 +11,8 @@ const corsHeaders = {
 
 interface NotificationRequest {
   sessionId: string;
-  userMessage: string;
+  conversationSummary: string;
+  messageCount: number;
   timestamp: string;
 }
 
@@ -22,25 +23,29 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { sessionId, userMessage, timestamp }: NotificationRequest = await req.json();
+    const { sessionId, conversationSummary, messageCount, timestamp }: NotificationRequest = await req.json();
 
-    console.log("Sending notification for session:", sessionId);
+    console.log("Sending conversation summary notification for session:", sessionId);
 
     const emailResponse = await resend.emails.send({
       from: "Chatbot <onboarding@resend.dev>",
       to: ["pierredevauxcontact@gmail.com"],
-      subject: "🤖 Nouvelle conversation avec le chatbot",
+      subject: "🤖 Résumé de conversation avec le chatbot",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h1 style="color: #d4af37; text-align: center;">Nouvelle conversation détectée</h1>
+          <h1 style="color: #d4af37; text-align: center;">Résumé de conversation terminée</h1>
           
           <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h2 style="color: #333; margin-top: 0;">Détails de la conversation</h2>
             <p><strong>Session ID:</strong> ${sessionId}</p>
             <p><strong>Date et heure:</strong> ${new Date(timestamp).toLocaleString('fr-FR')}</p>
-            <p><strong>Premier message:</strong></p>
-            <div style="background-color: white; padding: 15px; border-left: 4px solid #d4af37; margin: 10px 0;">
-              "${userMessage}"
+            <p><strong>Nombre de messages:</strong> ${messageCount}</p>
+          </div>
+          
+          <div style="background-color: white; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #d4af37;">
+            <h3 style="color: #333; margin-top: 0;">Résumé de la conversation :</h3>
+            <div style="white-space: pre-wrap; line-height: 1.6; color: #555;">
+              ${conversationSummary}
             </div>
           </div>
           
@@ -59,7 +64,7 @@ const handler = async (req: Request): Promise<Response> => {
       `,
     });
 
-    console.log("Notification email sent successfully:", emailResponse);
+    console.log("Conversation summary notification sent successfully:", emailResponse);
 
     return new Response(JSON.stringify({ success: true, emailResponse }), {
       status: 200,

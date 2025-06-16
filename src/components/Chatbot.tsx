@@ -47,20 +47,43 @@ const Chatbot = () => {
     }
   }, [isLoading]);
 
-  const sendNotification = async (userMessage: string) => {
+  // Effet pour détecter la fermeture du dialogue et envoyer le résumé
+  useEffect(() => {
+    const handleDialogClose = () => {
+      if (!isOpen && messages.length > 1) {
+        sendConversationSummary();
+      }
+    };
+
+    if (!isOpen) {
+      handleDialogClose();
+    }
+  }, [isOpen, messages]);
+
+  const sendConversationSummary = async () => {
+    if (messages.length <= 1) return; // Ne pas envoyer si pas de vraie conversation
+
     try {
-      console.log('Sending notification for new conversation...');
+      // Créer un résumé de la conversation
+      const conversationText = messages
+        .filter(msg => msg.id !== '1') // Exclure le message d'accueil
+        .map(msg => `${msg.isUser ? 'Utilisateur' : 'Assistant'}: ${msg.text}`)
+        .join('\n\n');
+
+      if (!conversationText.trim()) return;
+
+      console.log('Sending conversation summary...');
       await supabase.functions.invoke('send-notification', {
         body: {
           sessionId,
-          userMessage,
+          conversationSummary: conversationText,
+          messageCount: messages.length - 1, // Exclure le message d'accueil
           timestamp: new Date().toISOString()
         }
       });
-      console.log('Notification sent successfully');
+      console.log('Conversation summary sent successfully');
     } catch (error) {
-      console.error('Error sending notification:', error);
-      // Ne pas faire échouer le chat si la notification échoue
+      console.error('Error sending conversation summary:', error);
     }
   };
 
@@ -97,9 +120,8 @@ const Chatbot = () => {
     setInputMessage('');
     setIsLoading(true);
 
-    // Envoyer une notification si c'est le premier message de la session
+    // Marquer que ce n'est plus le premier message
     if (isFirstMessage) {
-      await sendNotification(currentUserMessage);
       setIsFirstMessage(false);
     }
 

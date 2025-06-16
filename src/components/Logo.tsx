@@ -21,7 +21,7 @@ const Logo = ({ className = "" }: { className?: string }) => {
           </span>
         </h1>
         <p className="text-xs text-gold-200 font-light tracking-wider uppercase">
-          IA Conversationnelle
+          Agence Web
         </p>
       </div>
     </div>

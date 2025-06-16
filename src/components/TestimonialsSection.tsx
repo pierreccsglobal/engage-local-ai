@@ -36,13 +36,16 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section className="py-20 px-4">
+    <section className="py-20 px-4 bg-gradient-to-b from-black/70 to-amber-950/30">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Ce Que Disent Nos Clients
+            Ce Que Disent Nos{' '}
+            <span className="bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent">
+              Clients
+            </span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-200 max-w-3xl mx-auto">
             Des entreprises locales qui ont transformé leur activité grâce à notre infrastructure IA
           </p>
         </div>
@@ -51,31 +54,31 @@ const TestimonialsSection = () => {
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index}
-              className="bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:scale-105"
+              className="bg-gradient-to-b from-amber-900/10 via-black/60 to-amber-950/20 backdrop-blur-sm border border-amber-500/30 hover:border-amber-400/50 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-amber-500/10"
             >
               <CardContent className="p-8">
                 <div className="flex items-center mb-4">
-                  <Quote className="w-8 h-8 text-blue-400 mr-4" />
+                  <Quote className="w-8 h-8 text-amber-400 mr-4" />
                   <div className="flex space-x-1">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                      <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
                     ))}
                   </div>
                 </div>
                 
-                <p className="text-gray-300 mb-6 text-lg leading-relaxed">
+                <p className="text-gray-200 mb-6 text-lg leading-relaxed">
                   "{testimonial.content}"
                 </p>
                 
                 <div className="flex items-center">
-                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-400 rounded-full flex items-center justify-center text-black font-bold text-lg mr-4 shadow-lg shadow-amber-500/25">
                     {testimonial.avatar}
                   </div>
                   <div>
                     <div className="font-semibold text-white">
                       {testimonial.name}
                     </div>
-                    <div className="text-blue-400">
+                    <div className="text-amber-400">
                       {testimonial.company}
                     </div>
                   </div>

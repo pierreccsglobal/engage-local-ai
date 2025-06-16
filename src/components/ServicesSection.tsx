@@ -62,13 +62,16 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section className="py-20 px-4">
+    <section className="py-20 px-4 bg-gradient-to-b from-black/60 to-amber-950/30">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Notre Infrastructure IA Complète
+            Notre Infrastructure IA{' '}
+            <span className="bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent">
+              Complète
+            </span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-200 max-w-3xl mx-auto">
             De la création de votre site web à la conversion finale, nous automatisons 
             chaque étape de votre parcours client avec l'intelligence artificielle
           </p>
@@ -78,24 +81,24 @@ const ServicesSection = () => {
           {services.map((service, index) => (
             <Card 
               key={index} 
-              className="bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:scale-105 group"
+              className="bg-gradient-to-b from-amber-900/10 via-black/60 to-amber-950/20 backdrop-blur-sm border border-amber-500/30 hover:border-amber-400/50 transition-all duration-300 transform hover:scale-105 group shadow-lg shadow-amber-500/10"
             >
               <CardHeader className="text-center">
-                <div className="mx-auto mb-4 p-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full w-fit group-hover:scale-110 transition-transform">
-                  <service.icon className="w-8 h-8 text-white" />
+                <div className="mx-auto mb-4 p-3 bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-400 rounded-full w-fit group-hover:scale-110 transition-transform shadow-lg shadow-amber-500/25">
+                  <service.icon className="w-8 h-8 text-black" />
                 </div>
-                <CardTitle className="text-xl text-white group-hover:text-blue-400 transition-colors">
+                <CardTitle className="text-xl text-white group-hover:text-amber-300 transition-colors">
                   {service.title}
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-300 mb-4 text-center">
+                <p className="text-gray-200 mb-4 text-center">
                   {service.description}
                 </p>
                 <ul className="space-y-2">
                   {service.features.map((feature, idx) => (
-                    <li key={idx} className="text-sm text-gray-400 flex items-center">
-                      <div className="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
+                    <li key={idx} className="text-sm text-gray-300 flex items-center">
+                      <div className="w-2 h-2 bg-gradient-to-r from-amber-400 to-yellow-400 rounded-full mr-3"></div>
                       {feature}
                     </li>
                   ))}

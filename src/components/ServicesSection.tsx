@@ -1,10 +1,16 @@
 
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Phone, MessageSquare, Bot, Users, Calendar, Mail, BarChart3, Target } from 'lucide-react';
+import { Phone, MessageSquare, Bot, Users, Calendar, Mail, BarChart3, Target, Globe, Code } from 'lucide-react';
 
 const ServicesSection = () => {
   const services = [
+    {
+      icon: Globe,
+      title: "Site Web & Landing Pages",
+      description: "Création de sites web optimisés pour la conversion avec design moderne et responsive",
+      features: ["Design sur mesure", "Optimisation mobile", "SEO intégré", "Performance optimisée"]
+    },
     {
       icon: Target,
       title: "Génération de Trafic",
@@ -63,12 +69,12 @@ const ServicesSection = () => {
             Notre Infrastructure IA Complète
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            De l'acquisition de trafic à la conversion finale, nous automatisons 
+            De la création de votre site web à la conversion finale, nous automatisons 
             chaque étape de votre parcours client avec l'intelligence artificielle
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <Card 
               key={index} 

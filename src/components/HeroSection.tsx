@@ -26,19 +26,19 @@ const HeroSection = () => {
         </div>
 
         <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-          Transformez vos{' '}
+          Créons votre{' '}
           <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            prospects
+            site web
           </span>{' '}
-          en clients avec l'
+          et transformons vos{' '}
           <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
-            IA
+            visiteurs en clients
           </span>
         </h1>
 
         <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
-          Nous amenons du trafic qualifié à votre entreprise locale via le SEO et la publicité, 
-          puis convertissons ce trafic grâce à notre infrastructure IA complète : 
+          Nous créons votre site web professionnel puis amenons du trafic qualifié via le SEO et la publicité. 
+          Ensuite, nous convertissons ce trafic grâce à notre infrastructure IA complète : 
           agents vocaux, chatbots, CRM automatisé et nurturing intelligent.
         </p>
 
@@ -56,7 +56,7 @@ const HeroSection = () => {
             size="lg"
             className="border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white px-8 py-4 text-lg font-semibold transition-all duration-300"
           >
-            Voir nos résultats
+            Voir nos réalisations
           </Button>
         </div>
 
@@ -74,8 +74,8 @@ const HeroSection = () => {
             <div className="text-gray-300">Appel manqué</div>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
-            <div className="text-3xl font-bold text-green-400 mb-2">100+</div>
-            <div className="text-gray-300">Entreprises accompagnées</div>
+            <div className="text-3xl font-bold text-green-400 mb-2">50+</div>
+            <div className="text-gray-300">Sites créés</div>
           </div>
         </div>
       </div>

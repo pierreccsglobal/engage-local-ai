@@ -15,7 +15,7 @@ const Footer = () => {
             </div>
             <p className="text-gray-300 mb-4">
               L'agence web spécialisée en IA conversationnelle pour les entreprises locales. 
-              Nous transformons vos prospects en clients grâce à l'intelligence artificielle.
+              Nous créons votre site web puis transformons vos visiteurs en clients grâce à l'intelligence artificielle.
             </p>
             <div className="text-sm text-gray-400">
               © 2024 IA Local Pro. Tous droits réservés.
@@ -26,12 +26,12 @@ const Footer = () => {
           <div>
             <h4 className="text-xl font-semibold text-white mb-4">Nos Services</h4>
             <ul className="space-y-2 text-gray-300">
+              <li>• Création de Sites Web</li>
+              <li>• Landing Pages Optimisées</li>
               <li>• Agent IA Vocal 24/7</li>
               <li>• Chatbot Générateur de Leads</li>
               <li>• CRM Intelligent</li>
-              <li>• Nurturing Automatisé</li>
-              <li>• SEO Local</li>
-              <li>• Publicité Ciblée</li>
+              <li>• SEO Local & Publicité</li>
             </ul>
           </div>
 
@@ -57,7 +57,7 @@ const Footer = () => {
 
         <div className="border-t border-white/20 mt-8 pt-8 text-center">
           <p className="text-gray-400">
-            Transformez votre entreprise locale avec l'IA • Résultats garantis sous 30 jours
+            Créons votre site web et transformons vos visiteurs en clients avec l'IA • Résultats garantis sous 30 jours
           </p>
         </div>
       </div>

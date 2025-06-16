@@ -56,11 +56,15 @@ const ContactSection = () => {
                 Demandez Votre Audit Gratuit
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              {/* Widget Calendly */}
+            <CardContent className="p-4">
+              {/* Widget Calendly avec styles responsifs */}
               <div 
-                className="calendly-inline-widget" 
-                style={{minWidth: '320px', height: '700px'}}
+                className="calendly-inline-widget w-full overflow-hidden" 
+                style={{
+                  minWidth: '280px',
+                  width: '100%',
+                  height: '600px'
+                }}
               ></div>
             </CardContent>
           </Card>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { TrendingUp, Clock, DollarSign, Users } from 'lucide-react';
 
@@ -6,7 +5,7 @@ const StatsSection = () => {
   const stats = [
     {
       icon: TrendingUp,
-      value: "+340%",
+      value: "+100%",
       label: "Augmentation moyenne des conversions",
       description: "Grâce à notre infrastructure IA complète"
     },

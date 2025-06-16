@@ -1,48 +1,9 @@
 
-import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Phone, Mail, MessageSquare, Send } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import { Phone, Mail, MessageSquare } from 'lucide-react';
 
 const ContactSection = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    message: ''
-  });
-  const { toast } = useToast();
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Simulation d'envoi du formulaire
-    toast({
-      title: "Demande envoyée !",
-      description: "Nous vous contacterons dans les 24h pour analyser vos besoins.",
-    });
-    
-    // Reset du formulaire
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      company: '',
-      message: ''
-    });
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
   return (
     <section className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
@@ -57,7 +18,7 @@ const ContactSection = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Formulaire de contact */}
+          {/* Widget Calendly */}
           <Card className="bg-zinc-900/90 backdrop-blur-sm border border-gold-500/30">
             <CardHeader>
               <CardTitle className="text-2xl text-white flex items-center">
@@ -66,64 +27,14 @@ const ContactSection = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <Input
-                    name="name"
-                    placeholder="Votre nom"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
-                  />
-                  <Input
-                    name="company"
-                    placeholder="Votre entreprise"
-                    value={formData.company}
-                    onChange={handleChange}
-                    required
-                    className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
-                  />
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <Input
-                    name="email"
-                    type="email"
-                    placeholder="Email professionnel"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
-                  />
-                  <Input
-                    name="phone"
-                    type="tel"
-                    placeholder="Numéro de téléphone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    required
-                    className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
-                  />
-                </div>
-                
-                <Textarea
-                  name="message"
-                  placeholder="Décrivez vos besoins et objectifs..."
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={4}
-                  className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
-                />
-                
-                <Button 
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-700 hover:to-gold-600 text-black py-4 text-lg font-semibold group transition-all duration-300"
-                >
-                  Obtenir Mon Audit Gratuit
-                  <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </form>
+              {/* Début de widget en ligne Calendly */}
+              <div 
+                className="calendly-inline-widget" 
+                data-url="https://calendly.com/creatoreconomy/nouvelle-reunion?primary_color=ecc14e" 
+                style={{minWidth: '320px', height: '700px'}}
+              ></div>
+              <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+              {/* Fin de widget en ligne Calendly */}
             </CardContent>
           </Card>
 

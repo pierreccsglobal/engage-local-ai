@@ -50,7 +50,7 @@ const StatsSection = () => {
           {stats.map((stat, index) => (
             <div 
               key={index}
-              className="text-center bg-gradient-to-b from-amber-900/20 via-black/60 to-amber-950/30 backdrop-blur-sm rounded-xl p-8 border border-amber-500/30 hover:border-amber-400/50 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-amber-500/10"
+              className="text-center bg-black/80 backdrop-blur-sm rounded-xl p-8 border border-amber-500/30 hover:border-amber-400/50 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-amber-500/10"
             >
               <div className="mx-auto mb-6 p-4 bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-400 rounded-full w-fit shadow-lg shadow-amber-500/25">
                 <stat.icon className="w-8 h-8 text-black" />

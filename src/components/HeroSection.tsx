@@ -62,19 +62,19 @@ const HeroSection = () => {
         </div>
 
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div className="bg-gradient-to-b from-amber-900/20 to-black/40 backdrop-blur-sm rounded-lg p-6 border border-amber-500/30 shadow-lg shadow-amber-500/10">
+          <div className="bg-black/80 backdrop-blur-sm rounded-lg p-6 border border-amber-500/30 shadow-lg shadow-amber-500/10">
             <div className="text-3xl font-bold text-amber-400 mb-2">24/7</div>
             <div className="text-gray-200">Disponibilité IA</div>
           </div>
-          <div className="bg-gradient-to-b from-amber-900/20 to-black/40 backdrop-blur-sm rounded-lg p-6 border border-amber-500/30 shadow-lg shadow-amber-500/10">
+          <div className="bg-black/80 backdrop-blur-sm rounded-lg p-6 border border-amber-500/30 shadow-lg shadow-amber-500/10">
             <div className="text-3xl font-bold text-yellow-400 mb-2">+300%</div>
             <div className="text-gray-200">Conversion moyenne</div>
           </div>
-          <div className="bg-gradient-to-b from-amber-900/20 to-black/40 backdrop-blur-sm rounded-lg p-6 border border-amber-500/30 shadow-lg shadow-amber-500/10">
+          <div className="bg-black/80 backdrop-blur-sm rounded-lg p-6 border border-amber-500/30 shadow-lg shadow-amber-500/10">
             <div className="text-3xl font-bold text-amber-400 mb-2">0</div>
             <div className="text-gray-200">Appel manqué</div>
           </div>
-          <div className="bg-gradient-to-b from-amber-900/20 to-black/40 backdrop-blur-sm rounded-lg p-6 border border-amber-500/30 shadow-lg shadow-amber-500/10">
+          <div className="bg-black/80 backdrop-blur-sm rounded-lg p-6 border border-amber-500/30 shadow-lg shadow-amber-500/10">
             <div className="text-3xl font-bold text-yellow-400 mb-2">50+</div>
             <div className="text-gray-200">Sites créés</div>
           </div>

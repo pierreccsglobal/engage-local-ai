@@ -2,6 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { MessageCircle, Send, X } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -110,7 +111,13 @@ const Chatbot = () => {
           <DialogContent className="sm:max-w-sm w-full max-w-[90vw] h-[450px] flex flex-col p-0 [&>button]:hidden">
             <DialogHeader className="p-3 border-b bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300">
               <DialogTitle className="text-black flex items-center justify-between text-sm">
-                <span>Pierre</span>
+                <div className="flex items-center gap-2">
+                  <Avatar className="w-8 h-8">
+                    <AvatarImage src="/lovable-uploads/0d117185-7e85-4d74-af89-b989b96f4b5d.png" alt="Pierre" />
+                    <AvatarFallback>P</AvatarFallback>
+                  </Avatar>
+                  <span>Pierre</span>
+                </div>
                 <Button
                   variant="ghost"
                   size="sm"

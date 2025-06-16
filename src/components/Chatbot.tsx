@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
@@ -107,15 +106,15 @@ const Chatbot = () => {
               <MessageCircle className="w-6 h-6" />
             </Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-md w-full h-[600px] flex flex-col p-0">
-            <DialogHeader className="p-4 border-b bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300">
-              <DialogTitle className="text-black flex items-center justify-between">
+          <DialogContent className="sm:max-w-sm w-full max-w-[90vw] h-[450px] flex flex-col p-0">
+            <DialogHeader className="p-3 border-b bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300">
+              <DialogTitle className="text-black flex items-center justify-between text-sm">
                 <span>Assistant IA</span>
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => setIsOpen(false)}
-                  className="text-black hover:bg-black/10"
+                  className="text-black hover:bg-black/10 h-8 w-8 p-0"
                 >
                   <X className="w-4 h-4" />
                 </Button>
@@ -123,20 +122,20 @@ const Chatbot = () => {
             </DialogHeader>
             
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            <div className="flex-1 overflow-y-auto p-3 space-y-3">
               {messages.map((message) => (
                 <div
                   key={message.id}
                   className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[80%] rounded-lg p-3 ${
+                    className={`max-w-[85%] rounded-lg p-2 ${
                       message.isUser
                         ? 'bg-gold-400 text-black'
                         : 'bg-gray-100 text-gray-900'
                     }`}
                   >
-                    <p className="text-sm">{message.text}</p>
+                    <p className="text-xs">{message.text}</p>
                     <p className="text-xs opacity-70 mt-1">
                       {message.timestamp.toLocaleTimeString()}
                     </p>
@@ -145,11 +144,11 @@ const Chatbot = () => {
               ))}
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="bg-gray-100 rounded-lg p-3">
+                  <div className="bg-gray-100 rounded-lg p-2">
                     <div className="flex space-x-1">
-                      <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></div>
-                      <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                      <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                      <div className="w-1.5 h-1.5 bg-gray-500 rounded-full animate-bounce"></div>
+                      <div className="w-1.5 h-1.5 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                      <div className="w-1.5 h-1.5 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                     </div>
                   </div>
                 </div>
@@ -158,23 +157,23 @@ const Chatbot = () => {
             </div>
 
             {/* Input */}
-            <div className="p-4 border-t">
+            <div className="p-3 border-t">
               <div className="flex gap-2">
                 <textarea
                   value={inputMessage}
                   onChange={(e) => setInputMessage(e.target.value)}
                   onKeyPress={handleKeyPress}
                   placeholder="Tapez votre message..."
-                  className="flex-1 resize-none border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400"
+                  className="flex-1 resize-none border rounded-lg px-2 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-gold-400"
                   rows={1}
                   disabled={isLoading}
                 />
                 <Button
                   onClick={sendMessage}
                   disabled={!inputMessage.trim() || isLoading}
-                  className="bg-gold-400 hover:bg-gold-500 text-black"
+                  className="bg-gold-400 hover:bg-gold-500 text-black h-8 w-8 p-0"
                 >
-                  <Send className="w-4 h-4" />
+                  <Send className="w-3 h-3" />
                 </Button>
               </div>
             </div>

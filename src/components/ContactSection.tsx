@@ -58,7 +58,7 @@ const ContactSection = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Formulaire de contact */}
-          <Card className="bg-black/80 backdrop-blur-sm border border-amber-500/30">
+          <Card className="bg-gray-800/90 backdrop-blur-sm border border-amber-500/30">
             <CardHeader>
               <CardTitle className="text-2xl text-white flex items-center">
                 <MessageSquare className="w-6 h-6 mr-3 text-amber-400" />
@@ -129,7 +129,7 @@ const ContactSection = () => {
 
           {/* Informations de contact */}
           <div className="space-y-8">
-            <Card className="bg-black/80 backdrop-blur-sm border border-amber-500/30">
+            <Card className="bg-gray-800/90 backdrop-blur-sm border border-amber-500/30">
               <CardContent className="p-8">
                 <div className="flex items-center mb-4">
                   <Phone className="w-8 h-8 text-amber-400 mr-4" />
@@ -142,7 +142,7 @@ const ContactSection = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-black/80 backdrop-blur-sm border border-amber-500/30">
+            <Card className="bg-gray-800/90 backdrop-blur-sm border border-amber-500/30">
               <CardContent className="p-8">
                 <div className="flex items-center mb-4">
                   <Mail className="w-8 h-8 text-amber-400 mr-4" />

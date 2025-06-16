@@ -81,7 +81,7 @@ const ServicesSection = () => {
           {services.map((service, index) => (
             <Card 
               key={index} 
-              className="bg-black/80 backdrop-blur-sm border border-amber-500/30 hover:border-amber-400/50 transition-all duration-300 transform hover:scale-105 group shadow-lg shadow-amber-500/10"
+              className="bg-gray-800/90 backdrop-blur-sm border border-amber-500/30 hover:border-amber-400/50 transition-all duration-300 transform hover:scale-105 group shadow-lg shadow-amber-500/10"
             >
               <CardHeader className="text-center">
                 <div className="mx-auto mb-4 p-3 bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-400 rounded-full w-fit group-hover:scale-110 transition-transform shadow-lg shadow-amber-500/25">

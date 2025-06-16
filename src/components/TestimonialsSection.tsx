@@ -54,7 +54,7 @@ const TestimonialsSection = () => {
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index}
-              className="bg-black/80 backdrop-blur-sm border border-amber-500/30 hover:border-amber-400/50 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-amber-500/10"
+              className="bg-gray-800/90 backdrop-blur-sm border border-amber-500/30 hover:border-amber-400/50 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-amber-500/10"
             >
               <CardContent className="p-8">
                 <div className="flex items-center mb-4">

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Phone, Mail, MessageSquare } from 'lucide-react';
@@ -27,14 +26,12 @@ const ContactSection = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              {/* Début de widget en ligne Calendly */}
+              {/* Widget Calendly */}
               <div 
                 className="calendly-inline-widget" 
                 data-url="https://calendly.com/creatoreconomy/nouvelle-reunion?primary_color=ecc14e" 
                 style={{minWidth: '320px', height: '700px'}}
               ></div>
-              <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-              {/* Fin de widget en ligne Calendly */}
             </CardContent>
           </Card>
 

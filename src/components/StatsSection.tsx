@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { TrendingUp, Clock, DollarSign, Users } from 'lucide-react';
 
@@ -105,7 +106,7 @@ const StatsSection = () => {
               <div className="mx-auto mb-6 p-4 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 rounded-full w-fit shadow-lg shadow-gold-500/40 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                 <stat.icon className="w-8 h-8 text-black" />
               </div>
-              <div className="text-4xl md:text-5xl font-bold text-gold-400 mb-2 group-hover:text-gold-300 transition-colors duration-300 animate-pulse">
+              <div className="text-4xl md:text-5xl font-bold text-gold-400 mb-2 group-hover:text-gold-300 transition-colors duration-300">
                 {stat.value}
               </div>
               <div className="text-xl font-semibold text-white mb-3 group-hover:text-gray-100 transition-colors duration-300">

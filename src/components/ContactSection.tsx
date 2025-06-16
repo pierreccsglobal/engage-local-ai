@@ -1,99 +1,38 @@
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Phone, Mail, MessageSquare } from 'lucide-react';
-import { useIsMobile } from '@/hooks/use-mobile';
 
 const ContactSection = () => {
-  const calendlyRef = useRef<HTMLDivElement>(null);
-  const isMobile = useIsMobile();
-  const [isCalendlyLoaded, setIsCalendlyLoaded] = useState(false);
-  const [isScriptLoaded, setIsScriptLoaded] = useState(false);
-  const initializationAttempted = useRef(false);
-
   useEffect(() => {
-    // Éviter la réinitialisation multiple
-    if (initializationAttempted.current) return;
-
-    const loadCalendlyScript = () => {
-      return new Promise<void>((resolve, reject) => {
-        // Vérifier si le script est déjà chargé
-        if (window.Calendly) {
-          setIsScriptLoaded(true);
-          resolve();
-          return;
-        }
-
-        // Vérifier si le script existe déjà dans le DOM
-        const existingScript = document.querySelector('script[src*="calendly.com"]');
-        if (existingScript) {
-          existingScript.addEventListener('load', () => {
-            setIsScriptLoaded(true);
-            resolve();
-          });
-          return;
-        }
-
-        // Créer et injecter le script Calendly
-        const script = document.createElement('script');
-        script.src = 'https://assets.calendly.com/assets/external/widget.js';
-        script.async = true;
-        
-        script.onload = () => {
-          console.log('Calendly script loaded successfully');
-          setIsScriptLoaded(true);
-          resolve();
-        };
-        
-        script.onerror = () => {
-          console.error('Failed to load Calendly script');
-          reject(new Error('Failed to load Calendly script'));
-        };
-
-        document.head.appendChild(script);
-      });
-    };
-
+    // Vérifier si Calendly est disponible et initialiser le widget
     const initCalendly = () => {
-      if (!calendlyRef.current || !window.Calendly || isCalendlyLoaded) return;
-
-      try {
-        console.log('Initializing Calendly widget...');
+      if (window.Calendly) {
         window.Calendly.initInlineWidget({
           url: 'https://calendly.com/creatoreconomy/nouvelle-reunion?primary_color=ecc14e',
-          parentElement: calendlyRef.current,
+          parentElement: document.querySelector('.calendly-inline-widget'),
           prefill: {},
           utm: {}
         });
-        setIsCalendlyLoaded(true);
-        console.log('Calendly widget initialized successfully');
-      } catch (error) {
-        console.error('Error initializing Calendly widget:', error);
       }
     };
 
-    // Séquence de chargement
-    const initializeCalendly = async () => {
-      if (initializationAttempted.current) return;
-      
-      initializationAttempted.current = true;
-      
-      try {
-        await loadCalendlyScript();
-        // Attendre un court délai pour s'assurer que le DOM est prêt
-        setTimeout(() => {
-          if (calendlyRef.current && !isCalendlyLoaded) {
-            initCalendly();
-          }
-        }, 50);
-      } catch (error) {
-        console.error('Failed to initialize Calendly:', error);
-        initializationAttempted.current = false; // Permettre une nouvelle tentative
-      }
-    };
+    // Si Calendly est déjà chargé, initialiser immédiatement
+    if (window.Calendly) {
+      initCalendly();
+    } else {
+      // Sinon, attendre que le script soit chargé
+      const checkCalendly = setInterval(() => {
+        if (window.Calendly) {
+          clearInterval(checkCalendly);
+          initCalendly();
+        }
+      }, 100);
 
-    initializeCalendly();
-  }, []); // Dépendances vides pour éviter les réinitialisations
+      // Nettoyer l'intervalle après 10 secondes si Calendly ne charge pas
+      setTimeout(() => clearInterval(checkCalendly), 10000);
+    }
+  }, []);
 
   return (
     <section data-section="contact" className="py-20 px-4">
@@ -118,37 +57,15 @@ const ContactSection = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-4">
-              {/* Widget Calendly */}
+              {/* Widget Calendly avec styles responsifs */}
               <div 
-                ref={calendlyRef}
-                className="calendly-inline-widget w-full overflow-hidden rounded-lg" 
+                className="calendly-inline-widget w-full overflow-hidden" 
                 style={{
-                  minWidth: isMobile ? '100%' : '280px',
+                  minWidth: '280px',
                   width: '100%',
-                  height: isMobile ? '500px' : '600px',
-                  minHeight: '400px'
+                  height: '600px'
                 }}
-              >
-                {/* Fallback content pendant le chargement */}
-                {!isCalendlyLoaded && (
-                  <div className="flex items-center justify-center h-full bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-lg border border-gold-500/20">
-                    <div className="text-center p-8">
-                      {isScriptLoaded ? (
-                        <>
-                          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gold-400 mx-auto mb-4"></div>
-                          <p className="text-gray-300 font-medium">Initialisation du calendrier...</p>
-                        </>
-                      ) : (
-                        <>
-                          <div className="animate-pulse h-8 w-8 bg-gold-400 rounded-full mx-auto mb-4"></div>
-                          <p className="text-gray-300 font-medium">Chargement du script...</p>
-                        </>
-                      )}
-                      <p className="text-gray-500 text-sm mt-2">Préparation de votre espace de réservation</p>
-                    </div>
-                  </div>
-                )}
-              </div>
+              ></div>
             </CardContent>
           </Card>
 

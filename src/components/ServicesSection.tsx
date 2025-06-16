@@ -62,12 +62,12 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-black/60 to-amber-950/30">
+    <section className="py-20 px-4 bg-gradient-to-b from-black/80 to-zinc-900/50">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Notre Infrastructure IA{' '}
-            <span className="bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-gold-400 to-gold-500 bg-clip-text text-transparent">
               Complète
             </span>
           </h2>
@@ -81,13 +81,13 @@ const ServicesSection = () => {
           {services.map((service, index) => (
             <Card 
               key={index} 
-              className="bg-gray-800/90 backdrop-blur-sm border border-amber-500/30 hover:border-amber-400/50 transition-all duration-300 transform hover:scale-105 group shadow-lg shadow-amber-500/10"
+              className="bg-zinc-900/90 backdrop-blur-sm border border-gold-500/30 hover:border-gold-400/60 transition-all duration-300 transform hover:scale-105 group shadow-lg shadow-gold-500/20"
             >
               <CardHeader className="text-center">
-                <div className="mx-auto mb-4 p-3 bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-400 rounded-full w-fit group-hover:scale-110 transition-transform shadow-lg shadow-amber-500/25">
+                <div className="mx-auto mb-4 p-3 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 rounded-full w-fit group-hover:scale-110 transition-transform shadow-lg shadow-gold-500/40">
                   <service.icon className="w-8 h-8 text-black" />
                 </div>
-                <CardTitle className="text-xl text-white group-hover:text-amber-300 transition-colors">
+                <CardTitle className="text-xl text-white group-hover:text-gold-300 transition-colors">
                   {service.title}
                 </CardTitle>
               </CardHeader>
@@ -98,7 +98,7 @@ const ServicesSection = () => {
                 <ul className="space-y-2">
                   {service.features.map((feature, idx) => (
                     <li key={idx} className="text-sm text-gray-200 flex items-center">
-                      <div className="w-2 h-2 bg-gradient-to-r from-amber-400 to-yellow-400 rounded-full mr-3"></div>
+                      <div className="w-2 h-2 bg-gradient-to-r from-gold-400 to-gold-500 rounded-full mr-3"></div>
                       {feature}
                     </li>
                   ))}

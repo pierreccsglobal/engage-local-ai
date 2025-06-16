@@ -58,10 +58,10 @@ const ContactSection = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Formulaire de contact */}
-          <Card className="bg-gray-800/90 backdrop-blur-sm border border-amber-500/30">
+          <Card className="bg-zinc-900/90 backdrop-blur-sm border border-gold-500/30">
             <CardHeader>
               <CardTitle className="text-2xl text-white flex items-center">
-                <MessageSquare className="w-6 h-6 mr-3 text-amber-400" />
+                <MessageSquare className="w-6 h-6 mr-3 text-gold-400" />
                 Demandez Votre Audit Gratuit
               </CardTitle>
             </CardHeader>
@@ -118,7 +118,7 @@ const ContactSection = () => {
                 
                 <Button 
                   type="submit"
-                  className="w-full bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 text-black py-4 text-lg font-semibold group transition-all duration-300"
+                  className="w-full bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-700 hover:to-gold-600 text-black py-4 text-lg font-semibold group transition-all duration-300"
                 >
                   Obtenir Mon Audit Gratuit
                   <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -129,10 +129,10 @@ const ContactSection = () => {
 
           {/* Informations de contact */}
           <div className="space-y-8">
-            <Card className="bg-gray-800/90 backdrop-blur-sm border border-amber-500/30">
+            <Card className="bg-zinc-900/90 backdrop-blur-sm border border-gold-500/30">
               <CardContent className="p-8">
                 <div className="flex items-center mb-4">
-                  <Phone className="w-8 h-8 text-amber-400 mr-4" />
+                  <Phone className="w-8 h-8 text-gold-400 mr-4" />
                   <div>
                     <h3 className="text-xl font-semibold text-white">Appelez-nous</h3>
                     <p className="text-gray-300">+33 1 23 45 67 89</p>
@@ -142,10 +142,10 @@ const ContactSection = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gray-800/90 backdrop-blur-sm border border-amber-500/30">
+            <Card className="bg-zinc-900/90 backdrop-blur-sm border border-gold-500/30">
               <CardContent className="p-8">
                 <div className="flex items-center mb-4">
-                  <Mail className="w-8 h-8 text-amber-400 mr-4" />
+                  <Mail className="w-8 h-8 text-gold-400 mr-4" />
                   <div>
                     <h3 className="text-xl font-semibold text-white">Écrivez-nous</h3>
                     <p className="text-gray-300">contact@agence-ia-local.fr</p>
@@ -155,14 +155,14 @@ const ContactSection = () => {
               </CardContent>
             </Card>
 
-            <div className="bg-gradient-to-r from-amber-600/20 to-yellow-600/20 backdrop-blur-sm rounded-xl p-8 border border-amber-500/30">
+            <div className="bg-gradient-to-r from-gold-600/20 to-gold-500/20 backdrop-blur-sm rounded-xl p-8 border border-gold-500/30">
               <h3 className="text-2xl font-bold text-white mb-4">
                 🎁 Offre Spéciale Lancement
               </h3>
               <p className="text-gray-300 mb-4">
                 Les 10 premières entreprises bénéficient de :
               </p>
-              <ul className="space-y-2 text-amber-400">
+              <ul className="space-y-2 text-gold-400">
                 <li>✅ Audit complet gratuit (valeur 500€)</li>
                 <li>✅ Setup IA offert (valeur 1500€)</li>
                 <li>✅ 3 mois de suivi gratuit</li>

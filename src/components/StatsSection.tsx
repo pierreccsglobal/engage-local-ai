@@ -31,12 +31,12 @@ const StatsSection = () => {
   ];
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-r from-amber-950/40 via-black/70 to-yellow-950/40">
+    <section className="py-20 px-4 bg-gradient-to-r from-zinc-900/60 via-black/80 to-zinc-800/60">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Des Résultats Qui{' '}
-            <span className="bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-gold-400 to-gold-500 bg-clip-text text-transparent">
               Parlent
             </span>
           </h2>
@@ -50,12 +50,12 @@ const StatsSection = () => {
           {stats.map((stat, index) => (
             <div 
               key={index}
-              className="text-center bg-gray-800/90 backdrop-blur-sm rounded-xl p-8 border border-amber-500/30 hover:border-amber-400/50 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-amber-500/10"
+              className="text-center bg-zinc-900/90 backdrop-blur-sm rounded-xl p-8 border border-gold-500/30 hover:border-gold-400/50 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-gold-500/20"
             >
-              <div className="mx-auto mb-6 p-4 bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-400 rounded-full w-fit shadow-lg shadow-amber-500/25">
+              <div className="mx-auto mb-6 p-4 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 rounded-full w-fit shadow-lg shadow-gold-500/40">
                 <stat.icon className="w-8 h-8 text-black" />
               </div>
-              <div className="text-4xl md:text-5xl font-bold text-amber-400 mb-2">
+              <div className="text-4xl md:text-5xl font-bold text-gold-400 mb-2">
                 {stat.value}
               </div>
               <div className="text-xl font-semibold text-white mb-3">

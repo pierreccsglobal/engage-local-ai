@@ -36,12 +36,12 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-black/70 to-amber-950/30">
+    <section className="py-20 px-4 bg-gradient-to-b from-black/80 to-zinc-900/60">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Ce Que Disent Nos{' '}
-            <span className="bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-gold-400 to-gold-500 bg-clip-text text-transparent">
               Clients
             </span>
           </h2>
@@ -54,14 +54,14 @@ const TestimonialsSection = () => {
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index}
-              className="bg-gray-800/90 backdrop-blur-sm border border-amber-500/30 hover:border-amber-400/50 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-amber-500/10"
+              className="bg-zinc-900/90 backdrop-blur-sm border border-gold-500/30 hover:border-gold-400/50 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-gold-500/20"
             >
               <CardContent className="p-8">
                 <div className="flex items-center mb-4">
-                  <Quote className="w-8 h-8 text-amber-400 mr-4" />
+                  <Quote className="w-8 h-8 text-gold-400 mr-4" />
                   <div className="flex space-x-1">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                      <Star key={i} className="w-5 h-5 fill-gold-400 text-gold-400" />
                     ))}
                   </div>
                 </div>
@@ -71,14 +71,14 @@ const TestimonialsSection = () => {
                 </p>
                 
                 <div className="flex items-center">
-                  <div className="w-12 h-12 bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-400 rounded-full flex items-center justify-center text-black font-bold text-lg mr-4 shadow-lg shadow-amber-500/25">
+                  <div className="w-12 h-12 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 rounded-full flex items-center justify-center text-black font-bold text-lg mr-4 shadow-lg shadow-gold-500/40">
                     {testimonial.avatar}
                   </div>
                   <div>
                     <div className="font-semibold text-white">
                       {testimonial.name}
                     </div>
-                    <div className="text-amber-400">
+                    <div className="text-gold-400">
                       {testimonial.company}
                     </div>
                   </div>

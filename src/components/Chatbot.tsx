@@ -27,6 +27,7 @@ const Chatbot = () => {
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substring(2)}`);
+  const [isFirstMessage, setIsFirstMessage] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { toast } = useToast();
@@ -45,6 +46,23 @@ const Chatbot = () => {
       textareaRef.current.focus();
     }
   }, [isLoading]);
+
+  const sendNotification = async (userMessage: string) => {
+    try {
+      console.log('Sending notification for new conversation...');
+      await supabase.functions.invoke('send-notification', {
+        body: {
+          sessionId,
+          userMessage,
+          timestamp: new Date().toISOString()
+        }
+      });
+      console.log('Notification sent successfully');
+    } catch (error) {
+      console.error('Error sending notification:', error);
+      // Ne pas faire échouer le chat si la notification échoue
+    }
+  };
 
   const saveConversation = async (userMessage: string, botResponse: string) => {
     try {
@@ -78,6 +96,12 @@ const Chatbot = () => {
     const currentUserMessage = inputMessage;
     setInputMessage('');
     setIsLoading(true);
+
+    // Envoyer une notification si c'est le premier message de la session
+    if (isFirstMessage) {
+      await sendNotification(currentUserMessage);
+      setIsFirstMessage(false);
+    }
 
     try {
       const conversationHistory = messages.map(msg => ({

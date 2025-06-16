@@ -20,7 +20,7 @@ const StatsSection = () => {
           animateCounters();
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.1 } // Réduit de 0.5 à 0.1 pour déclencher plus tôt sur mobile
     );
 
     if (sectionRef.current) {

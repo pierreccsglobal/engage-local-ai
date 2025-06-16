@@ -1,37 +1,77 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Phone, Mail, MessageSquare } from 'lucide-react';
 
 const ContactSection = () => {
+  const calendlyRef = useRef<HTMLDivElement>(null);
+  const isInitialized = useRef(false);
+
   useEffect(() => {
-    // Vérifier si Calendly est disponible et initialiser le widget
-    const initCalendly = () => {
-      if (window.Calendly) {
+    const loadCalendlyScript = () => {
+      return new Promise<void>((resolve, reject) => {
+        // Vérifier si le script existe déjà
+        if (document.querySelector('script[src*="calendly.com"]')) {
+          resolve();
+          return;
+        }
+
+        const script = document.createElement('script');
+        script.src = 'https://assets.calendly.com/assets/external/widget.js';
+        script.async = true;
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error('Failed to load Calendly script'));
+        document.head.appendChild(script);
+      });
+    };
+
+    const initializeCalendly = async () => {
+      // Éviter les initialisations multiples
+      if (isInitialized.current) return;
+
+      try {
+        // Attendre que le script soit chargé
+        await loadCalendlyScript();
+        
+        // Attendre un court délai pour s'assurer que l'élément DOM est prêt
+        await new Promise(resolve => setTimeout(resolve, 100));
+
+        // Vérifier que l'élément DOM existe
+        if (!calendlyRef.current) {
+          console.error('Calendly container element not found');
+          return;
+        }
+
+        // Vérifier que Calendly est disponible
+        if (!window.Calendly) {
+          console.error('Calendly widget not available');
+          return;
+        }
+
+        console.log('Initializing Calendly widget...');
+        
+        // Initialiser le widget avec des vérifications supplémentaires
         window.Calendly.initInlineWidget({
           url: 'https://calendly.com/creatoreconomy/nouvelle-reunion?primary_color=ecc14e',
-          parentElement: document.querySelector('.calendly-inline-widget'),
+          parentElement: calendlyRef.current,
           prefill: {},
           utm: {}
         });
+
+        isInitialized.current = true;
+        console.log('Calendly widget initialized successfully');
+
+      } catch (error) {
+        console.error('Error initializing Calendly:', error);
       }
     };
 
-    // Si Calendly est déjà chargé, initialiser immédiatement
-    if (window.Calendly) {
-      initCalendly();
-    } else {
-      // Sinon, attendre que le script soit chargé
-      const checkCalendly = setInterval(() => {
-        if (window.Calendly) {
-          clearInterval(checkCalendly);
-          initCalendly();
-        }
-      }, 100);
+    // Délai pour s'assurer que le composant est monté
+    const timer = setTimeout(initializeCalendly, 200);
 
-      // Nettoyer l'intervalle après 10 secondes si Calendly ne charge pas
-      setTimeout(() => clearInterval(checkCalendly), 10000);
-    }
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
@@ -57,15 +97,25 @@ const ContactSection = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-4">
-              {/* Widget Calendly avec styles responsifs */}
+              {/* Widget Calendly avec ref pour un accès DOM sécurisé */}
               <div 
-                className="calendly-inline-widget w-full overflow-hidden" 
+                ref={calendlyRef}
+                className="w-full overflow-hidden bg-white rounded-lg" 
                 style={{
                   minWidth: '280px',
                   width: '100%',
-                  height: '600px'
+                  height: '600px',
+                  minHeight: '600px'
                 }}
-              ></div>
+              >
+                {/* Message de chargement */}
+                <div className="flex items-center justify-center h-full text-gray-600">
+                  <div className="text-center">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gold-500 mx-auto mb-4"></div>
+                    <p>Chargement du calendrier...</p>
+                  </div>
+                </div>
+              </div>
             </CardContent>
           </Card>
 

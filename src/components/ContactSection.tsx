@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Phone, Mail, MessageSquare } from 'lucide-react';
@@ -105,7 +106,7 @@ const ContactSection = () => {
               </p>
               <ul className="space-y-2 text-gold-400">
                 <li>✅ Audit complet gratuit (valeur 500€)</li>
-                <li>✅ Setup IA offert (valeur 1500€)</li>
+                <li>✅ Garantie satisfait ou remboursé ROI x5</li>
                 <li>✅ 3 mois de suivi gratuit</li>
                 <li>✅ Formation équipe incluse</li>
               </ul>

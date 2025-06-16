@@ -1,9 +1,15 @@
-
 import React from 'react';
 import { ArrowRight, Bot, Zap, Target } from 'lucide-react';
 import Logo from './Logo';
 
 const HeroSection = () => {
+  const scrollToContact = () => {
+    const contactSection = document.querySelector('[data-section="contact"]');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 bg-gradient-to-br from-black via-zinc-900 to-black overflow-hidden">
       {/* Fond avec effets lumineux */}
@@ -68,7 +74,10 @@ const HeroSection = () => {
 
         {/* Boutons d'action */}
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-          <button className="group bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 text-black px-8 py-4 rounded-full font-semibold text-lg shadow-lg shadow-gold-500/30 hover:shadow-xl hover:shadow-gold-400/40 transform hover:scale-105 transition-all duration-300 flex items-center">
+          <button 
+            onClick={scrollToContact}
+            className="group bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 text-black px-8 py-4 rounded-full font-semibold text-lg shadow-lg shadow-gold-500/30 hover:shadow-xl hover:shadow-gold-400/40 transform hover:scale-105 transition-all duration-300 flex items-center"
+          >
             Démarrer Maintenant
             <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>

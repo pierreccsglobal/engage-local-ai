@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Bot, Zap, Target } from 'lucide-react';
 import Logo from './Logo';
@@ -15,12 +16,12 @@ const HeroSection = () => {
   const fullText = "Transformez Vos Visiteurs en Clients";
 
   useEffect(() => {
-    // Animation machine à écrire
+    // Animation machine à écrire - vitesse augmentée
     if (currentIndex < fullText.length) {
       const timeout = setTimeout(() => {
         setDisplayedText(prev => prev + fullText[currentIndex]);
         setCurrentIndex(prev => prev + 1);
-      }, 100); // Vitesse de frappe
+      }, 50); // Vitesse de frappe augmentée (était 100ms, maintenant 50ms)
       return () => clearTimeout(timeout);
     } else {
       setIsTypingComplete(true);

@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
@@ -25,6 +26,7 @@ const Chatbot = () => {
   ]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substring(2)}`);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { toast } = useToast();
@@ -44,6 +46,24 @@ const Chatbot = () => {
     }
   }, [isLoading]);
 
+  const saveConversation = async (userMessage: string, botResponse: string) => {
+    try {
+      const { error } = await supabase
+        .from('chat_conversations')
+        .insert({
+          session_id: sessionId,
+          user_message: userMessage,
+          bot_response: botResponse
+        });
+
+      if (error) {
+        console.error('Erreur lors de la sauvegarde de la conversation:', error);
+      }
+    } catch (error) {
+      console.error('Erreur lors de la sauvegarde:', error);
+    }
+  };
+
   const sendMessage = async () => {
     if (!inputMessage.trim() || isLoading) return;
 
@@ -55,6 +75,7 @@ const Chatbot = () => {
     };
 
     setMessages(prev => [...prev, userMessage]);
+    const currentUserMessage = inputMessage;
     setInputMessage('');
     setIsLoading(true);
 
@@ -66,7 +87,7 @@ const Chatbot = () => {
 
       const { data, error } = await supabase.functions.invoke('chat-gpt', {
         body: {
-          message: inputMessage,
+          message: currentUserMessage,
           conversationHistory
         }
       });
@@ -81,6 +102,9 @@ const Chatbot = () => {
       };
 
       setMessages(prev => [...prev, aiMessage]);
+      
+      // Sauvegarder la conversation dans la base de données
+      await saveConversation(currentUserMessage, data.reply);
     } catch (error) {
       console.error('Error sending message:', error);
       toast({

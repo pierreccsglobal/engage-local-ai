@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
@@ -17,7 +18,7 @@ const Chatbot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: 'Bonjour ! Je suis votre assistant IA. Comment puis-je vous aider aujourd\'hui ?',
+      text: 'Bonjour ! Je suis Pierre, votre assistant IA. Comment puis-je vous aider aujourd\'hui ?',
       isUser: false,
       timestamp: new Date()
     }
@@ -106,10 +107,10 @@ const Chatbot = () => {
               <MessageCircle className="w-6 h-6" />
             </Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-sm w-full max-w-[90vw] h-[450px] flex flex-col p-0">
+          <DialogContent className="sm:max-w-sm w-full max-w-[90vw] h-[450px] flex flex-col p-0 [&>button]:hidden">
             <DialogHeader className="p-3 border-b bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300">
               <DialogTitle className="text-black flex items-center justify-between text-sm">
-                <span>Assistant IA</span>
+                <span>Pierre</span>
                 <Button
                   variant="ghost"
                   size="sm"

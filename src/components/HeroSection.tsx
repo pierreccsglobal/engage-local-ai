@@ -41,7 +41,7 @@ const HeroSection = () => {
             <div className="flex items-center">
               <Bot className="w-6 h-6 text-gold-400 mr-3" />
               <div>
-                <div className="text-2xl font-bold text-gold-400">+340%</div>
+                <div className="text-2xl font-bold text-gold-400">+100%</div>
                 <div className="text-sm text-gray-300">Conversions</div>
               </div>
             </div>

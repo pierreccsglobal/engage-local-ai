@@ -135,7 +135,7 @@ const ContactSection = () => {
                   <Phone className="w-8 h-8 text-gold-400 mr-4" />
                   <div>
                     <h3 className="text-xl font-semibold text-white">Appelez-nous</h3>
-                    <p className="text-gray-300">+33 1 23 45 67 89</p>
+                    <p className="text-gray-300">06 27 67 57 14</p>
                     <p className="text-sm text-gray-400">Lun-Ven 9h-18h</p>
                   </div>
                 </div>

@@ -1,10 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+
+import React, { useEffect, useRef, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Phone, Mail, MessageSquare } from 'lucide-react';
+import { Phone, Mail, MessageSquare, Calendar } from 'lucide-react';
 
 const ContactSection = () => {
   const calendlyRef = useRef<HTMLDivElement>(null);
   const isInitialized = useRef(false);
+  const [widgetLoaded, setWidgetLoaded] = useState(false);
+  const [showFallback, setShowFallback] = useState(false);
 
   useEffect(() => {
     const loadCalendlyScript = () => {
@@ -34,45 +37,64 @@ const ContactSection = () => {
         await loadCalendlyScript();
         
         // Attendre un court délai pour s'assurer que l'élément DOM est prêt
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await new Promise(resolve => setTimeout(resolve, 500));
 
         // Vérifier que l'élément DOM existe
         if (!calendlyRef.current) {
           console.error('Calendly container element not found');
+          setShowFallback(true);
           return;
         }
 
         // Vérifier que Calendly est disponible
         if (!window.Calendly) {
           console.error('Calendly widget not available');
+          setShowFallback(true);
           return;
         }
 
         console.log('Initializing Calendly widget...');
         
-        // Initialiser le widget avec des paramètres pour gérer les cookies cross-origin
+        // Nettoyer le conteneur avant l'initialisation
+        calendlyRef.current.innerHTML = '';
+        
+        // Initialiser le widget
         window.Calendly.initInlineWidget({
-          url: 'https://calendly.com/creatoreconomy/nouvelle-reunion?primary_color=ecc14e&embed_domain=' + encodeURIComponent(window.location.hostname),
+          url: 'https://calendly.com/creatoreconomy/nouvelle-reunion?primary_color=ecc14e',
           parentElement: calendlyRef.current,
           prefill: {},
           utm: {}
         });
 
         isInitialized.current = true;
+        setWidgetLoaded(true);
         console.log('Calendly widget initialized successfully');
+
+        // Vérifier après 3 secondes si le widget s'est bien chargé
+        setTimeout(() => {
+          if (calendlyRef.current && calendlyRef.current.children.length === 0) {
+            console.warn('Calendly widget may not have loaded properly, showing fallback');
+            setShowFallback(true);
+          }
+        }, 3000);
 
       } catch (error) {
         console.error('Error initializing Calendly:', error);
+        setShowFallback(true);
       }
     };
 
     // Délai pour s'assurer que le composant est monté
-    const timer = setTimeout(initializeCalendly, 200);
+    const timer = setTimeout(initializeCalendly, 300);
 
     return () => {
       clearTimeout(timer);
     };
   }, []);
+
+  const handleCalendlyClick = () => {
+    window.open('https://calendly.com/creatoreconomy/nouvelle-reunion?primary_color=ecc14e', '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <section data-section="contact" className="py-20 px-4">
@@ -97,27 +119,48 @@ const ContactSection = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-4">
-              {/* Widget Calendly avec attributs pour cookies cross-origin */}
-              <div 
-                ref={calendlyRef}
-                className="w-full overflow-hidden bg-white rounded-lg" 
-                style={{
-                  minWidth: '280px',
-                  width: '100%',
-                  height: '600px',
-                  minHeight: '600px'
-                }}
-                data-embed-type="Inline"
-                data-auto-load="false"
-              >
-                {/* Message de chargement */}
-                <div className="flex items-center justify-center h-full text-gray-600">
-                  <div className="text-center">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gold-500 mx-auto mb-4"></div>
-                    <p>Chargement du calendrier...</p>
+              {!showFallback ? (
+                <div 
+                  ref={calendlyRef}
+                  className="w-full overflow-hidden bg-white rounded-lg" 
+                  style={{
+                    minWidth: '280px',
+                    width: '100%',
+                    height: '600px',
+                    minHeight: '600px'
+                  }}
+                  data-embed-type="Inline"
+                  data-auto-load="false"
+                >
+                  {/* Message de chargement */}
+                  <div className="flex items-center justify-center h-full text-gray-600">
+                    <div className="text-center">
+                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gold-500 mx-auto mb-4"></div>
+                      <p>Chargement du calendrier...</p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              ) : (
+                /* Fallback button si le widget ne se charge pas */
+                <div className="bg-white rounded-lg p-8 text-center h-[600px] flex flex-col justify-center">
+                  <Calendar className="w-16 h-16 text-gold-500 mx-auto mb-6" />
+                  <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                    Réservez votre audit gratuit
+                  </h3>
+                  <p className="text-gray-600 mb-6">
+                    Cliquez sur le bouton ci-dessous pour accéder à notre calendrier de réservation
+                  </p>
+                  <button
+                    onClick={handleCalendlyClick}
+                    className="bg-gold-500 hover:bg-gold-600 text-black font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                  >
+                    📅 Réserver un créneau
+                  </button>
+                  <p className="text-sm text-gray-500 mt-4">
+                    S'ouvre dans un nouvel onglet
+                  </p>
+                </div>
+              )}
             </CardContent>
           </Card>
 

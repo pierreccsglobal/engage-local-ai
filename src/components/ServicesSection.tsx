@@ -92,12 +92,12 @@ const ServicesSection = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-200 mb-4 text-center">
+                <p className="text-gray-100 mb-4 text-center font-medium">
                   {service.description}
                 </p>
                 <ul className="space-y-2">
                   {service.features.map((feature, idx) => (
-                    <li key={idx} className="text-sm text-gray-300 flex items-center">
+                    <li key={idx} className="text-sm text-gray-200 flex items-center">
                       <div className="w-2 h-2 bg-gradient-to-r from-amber-400 to-yellow-400 rounded-full mr-3"></div>
                       {feature}
                     </li>

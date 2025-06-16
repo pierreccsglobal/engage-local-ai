@@ -1,37 +1,61 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Phone, Mail, MessageSquare } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const ContactSection = () => {
+  const calendlyRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
+
   useEffect(() => {
-    // Vérifier si Calendly est disponible et initialiser le widget
     const initCalendly = () => {
-      if (window.Calendly) {
-        window.Calendly.initInlineWidget({
-          url: 'https://calendly.com/creatoreconomy/nouvelle-reunion?primary_color=ecc14e',
-          parentElement: document.querySelector('.calendly-inline-widget'),
-          prefill: {},
-          utm: {}
-        });
+      // Vérifier que Calendly est disponible et que l'élément existe
+      if (window.Calendly && calendlyRef.current) {
+        console.log('Initializing Calendly widget...');
+        try {
+          window.Calendly.initInlineWidget({
+            url: 'https://calendly.com/creatoreconomy/nouvelle-reunion?primary_color=ecc14e',
+            parentElement: calendlyRef.current,
+            prefill: {},
+            utm: {}
+          });
+          console.log('Calendly widget initialized successfully');
+        } catch (error) {
+          console.error('Error initializing Calendly widget:', error);
+        }
       }
     };
 
-    // Si Calendly est déjà chargé, initialiser immédiatement
-    if (window.Calendly) {
-      initCalendly();
-    } else {
-      // Sinon, attendre que le script soit chargé
-      const checkCalendly = setInterval(() => {
+    // Attendre que le composant soit monté et l'élément disponible
+    const checkAndInit = () => {
+      if (calendlyRef.current) {
         if (window.Calendly) {
-          clearInterval(checkCalendly);
           initCalendly();
-        }
-      }, 100);
+        } else {
+          // Attendre que le script Calendly soit chargé
+          const checkCalendly = setInterval(() => {
+            if (window.Calendly && calendlyRef.current) {
+              clearInterval(checkCalendly);
+              initCalendly();
+            }
+          }, 100);
 
-      // Nettoyer l'intervalle après 10 secondes si Calendly ne charge pas
-      setTimeout(() => clearInterval(checkCalendly), 10000);
-    }
+          // Nettoyer l'intervalle après 15 secondes si Calendly ne charge pas
+          setTimeout(() => {
+            clearInterval(checkCalendly);
+            console.warn('Calendly script failed to load within 15 seconds');
+          }, 15000);
+        }
+      }
+    };
+
+    // Utiliser un petit délai pour s'assurer que le DOM est prêt
+    const timer = setTimeout(checkAndInit, 100);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
@@ -57,15 +81,25 @@ const ContactSection = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-4">
-              {/* Widget Calendly avec styles responsifs */}
+              {/* Widget Calendly avec styles responsifs améliorés */}
               <div 
-                className="calendly-inline-widget w-full overflow-hidden" 
+                ref={calendlyRef}
+                className="calendly-inline-widget w-full overflow-hidden rounded-lg" 
                 style={{
-                  minWidth: '280px',
+                  minWidth: isMobile ? '100%' : '280px',
                   width: '100%',
-                  height: '600px'
+                  height: isMobile ? '500px' : '600px',
+                  minHeight: '400px'
                 }}
-              ></div>
+              >
+                {/* Fallback content pendant le chargement */}
+                <div className="flex items-center justify-center h-full bg-gray-100 rounded-lg">
+                  <div className="text-center p-8">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gold-400 mx-auto mb-4"></div>
+                    <p className="text-gray-600">Chargement du calendrier...</p>
+                  </div>
+                </div>
+              </div>
             </CardContent>
           </Card>
 

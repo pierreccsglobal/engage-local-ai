@@ -1,8 +1,39 @@
-import React from 'react';
+
+import React, { useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Phone, Mail, MessageSquare } from 'lucide-react';
 
 const ContactSection = () => {
+  useEffect(() => {
+    // Vérifier si Calendly est disponible et initialiser le widget
+    const initCalendly = () => {
+      if (window.Calendly) {
+        window.Calendly.initInlineWidget({
+          url: 'https://calendly.com/creatoreconomy/nouvelle-reunion?primary_color=ecc14e',
+          parentElement: document.querySelector('.calendly-inline-widget'),
+          prefill: {},
+          utm: {}
+        });
+      }
+    };
+
+    // Si Calendly est déjà chargé, initialiser immédiatement
+    if (window.Calendly) {
+      initCalendly();
+    } else {
+      // Sinon, attendre que le script soit chargé
+      const checkCalendly = setInterval(() => {
+        if (window.Calendly) {
+          clearInterval(checkCalendly);
+          initCalendly();
+        }
+      }, 100);
+
+      // Nettoyer l'intervalle après 10 secondes si Calendly ne charge pas
+      setTimeout(() => clearInterval(checkCalendly), 10000);
+    }
+  }, []);
+
   return (
     <section className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
@@ -29,7 +60,6 @@ const ContactSection = () => {
               {/* Widget Calendly */}
               <div 
                 className="calendly-inline-widget" 
-                data-url="https://calendly.com/creatoreconomy/nouvelle-reunion?primary_color=ecc14e" 
                 style={{minWidth: '320px', height: '700px'}}
               ></div>
             </CardContent>

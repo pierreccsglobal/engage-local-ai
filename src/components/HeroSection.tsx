@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Bot, Zap, Target } from 'lucide-react';
 import Logo from './Logo';
@@ -7,6 +8,25 @@ const HeroSection = () => {
     conversion: 0,
     roi: 0
   });
+
+  const [displayedText, setDisplayedText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
+  
+  const fullText = "Transformez Vos Visiteurs en Clients";
+
+  useEffect(() => {
+    // Animation machine à écrire
+    if (currentIndex < fullText.length) {
+      const timeout = setTimeout(() => {
+        setDisplayedText(prev => prev + fullText[currentIndex]);
+        setCurrentIndex(prev => prev + 1);
+      }, 100); // Vitesse de frappe
+      return () => clearTimeout(timeout);
+    } else {
+      setIsTypingComplete(true);
+    }
+  }, [currentIndex, fullText]);
 
   useEffect(() => {
     // Animation des compteurs
@@ -54,16 +74,22 @@ const HeroSection = () => {
           <Logo className="scale-150 hover:scale-[1.6] transition-transform duration-300" />
         </div>
 
-        {/* Titre principal avec animation d'apparition décalée */}
-        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in animation-delay-200">
-          Transformez Vos{' '}
-          <span className="bg-gradient-to-r from-gold-400 via-gold-500 to-gold-300 bg-clip-text text-transparent animate-pulse">
-            Visiteurs
-          </span>
-          <br />
-          en{' '}
-          <span className="bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500 bg-clip-text text-transparent animate-pulse delay-300">
-            Clients
+        {/* Titre principal avec effet machine à écrire */}
+        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in animation-delay-200 min-h-[200px] flex flex-col justify-center">
+          <span className="relative">
+            {displayedText.split(' ').map((word, index) => {
+              if (word === 'Visiteurs' || word === 'Clients') {
+                return (
+                  <span key={index} className="bg-gradient-to-r from-gold-400 via-gold-500 to-gold-300 bg-clip-text text-transparent">
+                    {word}{' '}
+                  </span>
+                );
+              }
+              return <span key={index}>{word} </span>;
+            })}
+            {!isTypingComplete && (
+              <span className="inline-block w-1 h-20 bg-gold-400 ml-1 animate-pulse"></span>
+            )}
           </span>
         </h1>
 

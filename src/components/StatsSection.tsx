@@ -84,7 +84,7 @@ const StatsSection = () => {
     <section ref={sectionRef} className="py-20 px-4 bg-gradient-to-r from-zinc-900/60 via-black/80 to-zinc-800/60">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
+          <h2 id="stats-heading" className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
             Des Résultats Qui{' '}
             <span className="bg-gradient-to-r from-gold-400 to-gold-500 bg-clip-text text-transparent">
               Parlent
@@ -109,9 +109,9 @@ const StatsSection = () => {
               <div className="text-4xl md:text-5xl font-bold text-gold-400 mb-2 group-hover:text-gold-300 transition-colors duration-300">
                 {stat.value}
               </div>
-              <div className="text-xl font-semibold text-white mb-3 group-hover:text-gray-100 transition-colors duration-300">
+              <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-gray-100 transition-colors duration-300">
                 {stat.label}
-              </div>
+              </h3>
               <div className="text-gray-200 text-sm group-hover:text-gray-100 transition-colors duration-300">
                 {stat.description}
               </div>

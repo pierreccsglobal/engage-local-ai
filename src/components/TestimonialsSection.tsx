@@ -39,7 +39,7 @@ const TestimonialsSection = () => {
     <section className="py-20 px-4 bg-gradient-to-b from-black/80 to-zinc-900/60">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
+          <h2 id="testimonials-heading" className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
             Ce Que Disent Nos{' '}
             <span className="bg-gradient-to-r from-gold-400 to-gold-500 bg-clip-text text-transparent">
               Clients
@@ -80,9 +80,9 @@ const TestimonialsSection = () => {
                     {testimonial.avatar}
                   </div>
                   <div>
-                    <div className="font-semibold text-white group-hover:text-gray-100 transition-colors duration-300">
+                    <h3 className="font-semibold text-white group-hover:text-gray-100 transition-colors duration-300">
                       {testimonial.name}
-                    </div>
+                    </h3>
                     <div className="text-gold-400 group-hover:text-gold-300 transition-colors duration-300">
                       {testimonial.company}
                     </div>

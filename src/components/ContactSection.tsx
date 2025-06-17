@@ -100,7 +100,7 @@ const ContactSection = () => {
     <section data-section="contact" className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
+          <h2 id="contact-heading" className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
             Prêt à Transformer Votre Entreprise ?
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto animate-fade-in animation-delay-200">
@@ -115,7 +115,7 @@ const ContactSection = () => {
             <CardHeader>
               <CardTitle className="text-2xl text-white flex items-center">
                 <MessageSquare className="w-6 h-6 mr-3 text-gold-400 animate-pulse" />
-                Demandez Votre Audit Gratuit
+                <h3>Demandez Votre Audit Gratuit</h3>
               </CardTitle>
             </CardHeader>
             <CardContent className="p-4">
@@ -144,9 +144,9 @@ const ContactSection = () => {
                 /* Fallback button si le widget ne se charge pas */
                 <div className="bg-white rounded-lg p-8 text-center h-[600px] flex flex-col justify-center">
                   <Calendar className="w-16 h-16 text-gold-500 mx-auto mb-6" />
-                  <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                  <h4 className="text-2xl font-bold text-gray-800 mb-4">
                     Réservez votre audit gratuit
-                  </h3>
+                  </h4>
                   <p className="text-gray-600 mb-6">
                     Cliquez sur le bouton ci-dessous pour accéder à notre calendrier de réservation
                   </p>
@@ -171,7 +171,7 @@ const ContactSection = () => {
                 <div className="flex items-center mb-4">
                   <Phone className="w-8 h-8 text-gold-400 mr-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
                   <div>
-                    <h3 className="text-xl font-semibold text-white group-hover:text-gray-100 transition-colors duration-300">Appelez-nous</h3>
+                    <h4 className="text-xl font-semibold text-white group-hover:text-gray-100 transition-colors duration-300">Appelez-nous</h4>
                     <a href="tel:0627675714" className="text-gray-300 hover:text-gold-400 transition-colors duration-300">
                       06 27 67 57 14
                     </a>
@@ -186,7 +186,7 @@ const ContactSection = () => {
                 <div className="flex items-center mb-4">
                   <Mail className="w-8 h-8 text-gold-400 mr-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
                   <div>
-                    <h3 className="text-xl font-semibold text-white group-hover:text-gray-100 transition-colors duration-300">Écrivez-nous</h3>
+                    <h4 className="text-xl font-semibold text-white group-hover:text-gray-100 transition-colors duration-300">Écrivez-nous</h4>
                     <a href="mailto:contact@leadprospect.fr" className="text-gray-300 hover:text-gold-400 transition-colors duration-300">
                       contact@leadprospect.fr
                     </a>
@@ -197,9 +197,9 @@ const ContactSection = () => {
             </Card>
 
             <div className="bg-gradient-to-r from-gold-600/20 to-gold-500/20 backdrop-blur-sm rounded-xl p-8 border border-gold-500/30 hover:border-gold-400/50 hover:scale-105 transition-all duration-300 animate-fade-in animation-delay-800 group">
-              <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-gray-100 transition-colors duration-300">
+              <h4 className="text-2xl font-bold text-white mb-4 group-hover:text-gray-100 transition-colors duration-300">
                 🎁 Offre Spéciale Lancement
-              </h3>
+              </h4>
               <p className="text-gray-300 mb-4 group-hover:text-gray-200 transition-colors duration-300">
                 Les 10 premières entreprises bénéficient de :
               </p>

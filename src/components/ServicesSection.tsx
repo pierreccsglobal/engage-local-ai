@@ -65,7 +65,7 @@ const ServicesSection = () => {
     <section className="py-20 px-4 bg-gradient-to-b from-black/80 to-zinc-900/50">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
+          <h2 id="services-heading" className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
             Notre Infrastructure IA{' '}
             <span className="bg-gradient-to-r from-gold-400 to-gold-500 bg-clip-text text-transparent">
               Complète
@@ -89,7 +89,7 @@ const ServicesSection = () => {
                   <service.icon className="w-8 h-8 text-black" />
                 </div>
                 <CardTitle className="text-xl text-white group-hover:text-gold-300 transition-colors duration-300">
-                  {service.title}
+                  <h3>{service.title}</h3>
                 </CardTitle>
               </CardHeader>
               <CardContent>

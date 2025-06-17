@@ -44,6 +44,20 @@
     
     <!-- Script Calendly -->
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+    <!-- Redirection automatique vers HTTPS non-www -->
+    <script>
+      (function() {
+        var currentUrl = window.location;
+        var canonicalUrl = 'https://leadprospect.fr';
+        
+        // Vérifier si nous ne sommes pas déjà sur l'URL canonique
+        if (currentUrl.protocol !== 'https:' || currentUrl.hostname === 'www.leadprospect.fr') {
+          var newUrl = canonicalUrl + currentUrl.pathname + currentUrl.search + currentUrl.hash;
+          window.location.replace(newUrl);
+        }
+      })();
+    </script>
   </head>
 
   <body>

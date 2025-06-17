@@ -92,5 +92,30 @@
         white-space: normal;
       }
     </style>
+    
+    <!-- Script pour gérer le code de statut 404 côté client -->
+    <script>
+      // Vérifier si nous sommes sur une route 404
+      window.addEventListener('load', function() {
+        if (window.location.pathname !== '/' && 
+            !window.location.pathname.startsWith('/admin') && 
+            window.location.pathname !== '/favicon.ico' &&
+            !window.location.pathname.startsWith('/assets/')) {
+          
+          // Essayer de définir le code de statut pour les crawlers
+          if (typeof window.history !== 'undefined') {
+            try {
+              window.history.replaceState(
+                { ...window.history.state, statusCode: 404 },
+                '',
+                window.location.pathname
+              );
+            } catch (e) {
+              console.log('Could not set 404 status code:', e);
+            }
+          }
+        }
+      });
+    </script>
   </body>
 </html>

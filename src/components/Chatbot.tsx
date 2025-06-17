@@ -28,6 +28,7 @@ const Chatbot = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substring(2)}`);
   const [isFirstMessage, setIsFirstMessage] = useState(true);
+  const [conversationSent, setConversationSent] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { toast } = useToast();
@@ -48,7 +49,7 @@ const Chatbot = () => {
   }, [isLoading]);
 
   const sendConversationSummary = async () => {
-    if (messages.length <= 1) return; // Ne pas envoyer si pas de vraie conversation
+    if (messages.length <= 1 || conversationSent) return; // Ne pas envoyer si pas de vraie conversation ou déjà envoyé
 
     try {
       // Créer un résumé de la conversation
@@ -60,7 +61,7 @@ const Chatbot = () => {
       if (!conversationText.trim()) return;
 
       console.log('Sending conversation summary...');
-      await supabase.functions.invoke('send-notification', {
+      const { data, error } = await supabase.functions.invoke('send-notification', {
         body: {
           sessionId,
           conversationSummary: conversationText,
@@ -68,45 +69,78 @@ const Chatbot = () => {
           timestamp: new Date().toISOString()
         }
       });
-      console.log('Conversation summary sent successfully');
+
+      if (!error) {
+        setConversationSent(true);
+        console.log('Conversation summary sent successfully');
+      } else {
+        console.error('Error sending conversation summary:', error);
+      }
     } catch (error) {
       console.error('Error sending conversation summary:', error);
     }
   };
 
+  // Fonction pour envoyer le résumé de manière synchrone (pour beforeunload)
+  const sendConversationSummarySync = () => {
+    if (messages.length <= 1 || conversationSent) return;
+
+    const conversationText = messages
+      .filter(msg => msg.id !== '1')
+      .map(msg => `${msg.isUser ? 'Utilisateur' : 'Assistant'}: ${msg.text}`)
+      .join('\n\n');
+
+    if (!conversationText.trim()) return;
+
+    // Utiliser sendBeacon pour un envoi synchrone fiable
+    const payload = JSON.stringify({
+      sessionId,
+      conversationSummary: conversationText,
+      messageCount: messages.length - 1,
+      timestamp: new Date().toISOString()
+    });
+
+    // Essayer d'abord avec l'API Supabase via fetch synchrone
+    try {
+      fetch(`${supabase.supabaseUrl}/functions/v1/send-notification`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${supabase.supabaseKey}`,
+        },
+        body: payload,
+        keepalive: true // Important pour les requêtes lors de beforeunload
+      });
+      setConversationSent(true);
+    } catch (error) {
+      console.error('Error sending conversation summary sync:', error);
+    }
+  };
+
   // Effet pour détecter la fermeture du dialogue et envoyer le résumé
   useEffect(() => {
-    if (!isOpen && messages.length > 1) {
+    if (!isOpen && messages.length > 1 && !conversationSent) {
       sendConversationSummary();
     }
-  }, [isOpen, messages]);
+  }, [isOpen, messages.length, conversationSent]);
 
   // Effet pour détecter quand l'utilisateur quitte la page
   useEffect(() => {
-    const handleBeforeUnload = () => {
-      if (messages.length > 1) {
-        // Envoyer de manière synchrone avant la fermeture
-        navigator.sendBeacon('/api/send-conversation', JSON.stringify({
-          sessionId,
-          conversationSummary: messages
-            .filter(msg => msg.id !== '1')
-            .map(msg => `${msg.isUser ? 'Utilisateur' : 'Assistant'}: ${msg.text}`)
-            .join('\n\n'),
-          messageCount: messages.length - 1,
-          timestamp: new Date().toISOString()
-        }));
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      if (messages.length > 1 && !conversationSent) {
+        sendConversationSummarySync();
       }
     };
 
     const handleVisibilityChange = () => {
-      if (document.visibilityState === 'hidden' && messages.length > 1) {
+      if (document.visibilityState === 'hidden' && messages.length > 1 && !conversationSent) {
         sendConversationSummary();
       }
     };
 
     const handlePageHide = () => {
-      if (messages.length > 1) {
-        sendConversationSummary();
+      if (messages.length > 1 && !conversationSent) {
+        sendConversationSummarySync();
       }
     };
 
@@ -115,12 +149,13 @@ const Chatbot = () => {
     document.addEventListener('visibilitychange', handleVisibilityChange);
     window.addEventListener('pagehide', handlePageHide);
 
+    // Cleanup function
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener('pagehide', handlePageHide);
     };
-  }, [messages, sessionId]);
+  }, [messages, sessionId, conversationSent]);
 
   const saveConversation = async (userMessage: string, botResponse: string) => {
     try {

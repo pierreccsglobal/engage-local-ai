@@ -47,19 +47,6 @@ const Chatbot = () => {
     }
   }, [isLoading]);
 
-  // Effet pour détecter la fermeture du dialogue et envoyer le résumé
-  useEffect(() => {
-    const handleDialogClose = () => {
-      if (!isOpen && messages.length > 1) {
-        sendConversationSummary();
-      }
-    };
-
-    if (!isOpen) {
-      handleDialogClose();
-    }
-  }, [isOpen, messages]);
-
   const sendConversationSummary = async () => {
     if (messages.length <= 1) return; // Ne pas envoyer si pas de vraie conversation
 
@@ -86,6 +73,54 @@ const Chatbot = () => {
       console.error('Error sending conversation summary:', error);
     }
   };
+
+  // Effet pour détecter la fermeture du dialogue et envoyer le résumé
+  useEffect(() => {
+    if (!isOpen && messages.length > 1) {
+      sendConversationSummary();
+    }
+  }, [isOpen, messages]);
+
+  // Effet pour détecter quand l'utilisateur quitte la page
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      if (messages.length > 1) {
+        // Envoyer de manière synchrone avant la fermeture
+        navigator.sendBeacon('/api/send-conversation', JSON.stringify({
+          sessionId,
+          conversationSummary: messages
+            .filter(msg => msg.id !== '1')
+            .map(msg => `${msg.isUser ? 'Utilisateur' : 'Assistant'}: ${msg.text}`)
+            .join('\n\n'),
+          messageCount: messages.length - 1,
+          timestamp: new Date().toISOString()
+        }));
+      }
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden' && messages.length > 1) {
+        sendConversationSummary();
+      }
+    };
+
+    const handlePageHide = () => {
+      if (messages.length > 1) {
+        sendConversationSummary();
+      }
+    };
+
+    // Événements pour détecter la fermeture/changement de page
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('pagehide', handlePageHide);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('pagehide', handlePageHide);
+    };
+  }, [messages, sessionId]);
 
   const saveConversation = async (userMessage: string, botResponse: string) => {
     try {

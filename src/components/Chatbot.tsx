@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
@@ -13,6 +12,9 @@ interface Message {
   isUser: boolean;
   timestamp: Date;
 }
+
+const SUPABASE_URL = "https://navaoaxmbkbbuxomkldq.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5hdmFvYXhtYmtiYnV4b21rbGRxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAwNzI4NDQsImV4cCI6MjA2NTY0ODg0NH0.pG7InPiEqXIm_UPkPkg0IgdqEG4sHovpp7Ju0jafHvQ";
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -102,11 +104,11 @@ const Chatbot = () => {
 
     // Essayer d'abord avec l'API Supabase via fetch synchrone
     try {
-      fetch(`${supabase.supabaseUrl}/functions/v1/send-notification`, {
+      fetch(`${SUPABASE_URL}/functions/v1/send-notification`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${supabase.supabaseKey}`,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
         },
         body: payload,
         keepalive: true // Important pour les requêtes lors de beforeunload

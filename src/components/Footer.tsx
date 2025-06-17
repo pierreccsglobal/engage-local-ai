@@ -24,7 +24,7 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="text-xl font-semibold text-white mb-4">Nos Services</h4>
+            <h3 className="text-xl font-semibold text-white mb-4">Nos Services</h3>
             <ul className="space-y-2 text-gray-200 text-sm">
               <li>• Création de Sites Web</li>
               <li>• Landing Pages Optimisées</li>
@@ -37,7 +37,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="text-xl font-semibold text-white mb-4">Contact</h4>
+            <h3 className="text-xl font-semibold text-white mb-4">Contact</h3>
             <div className="space-y-3">
               <div className="flex items-center text-gray-200 text-sm">
                 <Phone className="w-4 h-4 text-gold-400 mr-3 flex-shrink-0" />
@@ -60,7 +60,7 @@ const Footer = () => {
 
           {/* Réseaux Sociaux */}
           <div>
-            <h4 className="text-xl font-semibold text-white mb-4">Suivez-nous</h4>
+            <h3 className="text-xl font-semibold text-white mb-4">Suivez-nous</h3>
             <div className="flex space-x-4">
               <a 
                 href="https://www.facebook.com/people/Lead-prospect/100094697677762/" 

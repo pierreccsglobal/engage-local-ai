@@ -142,7 +142,6 @@ const HeroSection = () => {
           <button 
             onClick={scrollToContact}
             className="group bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 text-black px-8 py-4 rounded-full font-semibold text-lg shadow-lg shadow-gold-500/30 hover:shadow-xl hover:shadow-gold-400/40 transform hover:scale-105 transition-all duration-300 flex items-center hover:from-gold-400 hover:via-gold-300 hover:to-gold-200 animate-bounce-gentle focus:outline-none focus:ring-2 focus:ring-gold-600"
-            tabIndex={5}
             aria-describedby="cta-description"
           >
             Démarrer Maintenant
@@ -151,7 +150,6 @@ const HeroSection = () => {
           <button 
             onClick={openChatbot}
             className="border-2 border-gold-400 text-gold-400 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gold-400 hover:text-black transition-all duration-300 backdrop-blur-sm hover:scale-105 hover:shadow-lg hover:shadow-gold-400/30 focus:outline-none focus:ring-2 focus:ring-gold-600"
-            tabIndex={6}
           >
             Voir une Démo
           </button>

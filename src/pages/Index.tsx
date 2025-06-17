@@ -16,29 +16,25 @@ const Index = () => {
           <ul className="sr-only focus-within:not-sr-only focus-within:fixed focus-within:top-4 focus-within:left-4 focus-within:bg-zinc-900 focus-within:border focus-within:border-gold-400 focus-within:rounded focus-within:p-4 focus-within:space-y-2 focus-within:z-50">
             <li>
               <a href="#services" 
-                 className="block bg-gold-400 text-black px-4 py-2 rounded hover:bg-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-600"
-                 tabIndex={1}>
+                 className="block bg-gold-400 text-black px-4 py-2 rounded hover:bg-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-600">
                 Services
               </a>
             </li>
             <li>
               <a href="#statistiques" 
-                 className="block bg-gold-400 text-black px-4 py-2 rounded hover:bg-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-600"
-                 tabIndex={2}>
+                 className="block bg-gold-400 text-black px-4 py-2 rounded hover:bg-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-600">
                 Statistiques
               </a>
             </li>
             <li>
               <a href="#temoignages" 
-                 className="block bg-gold-400 text-black px-4 py-2 rounded hover:bg-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-600"
-                 tabIndex={3}>
+                 className="block bg-gold-400 text-black px-4 py-2 rounded hover:bg-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-600">
                 Témoignages
               </a>
             </li>
             <li>
               <a href="#contact" 
-                 className="block bg-gold-400 text-black px-4 py-2 rounded hover:bg-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-600"
-                 tabIndex={4}>
+                 className="block bg-gold-400 text-black px-4 py-2 rounded hover:bg-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-600">
                 Contact
               </a>
             </li>

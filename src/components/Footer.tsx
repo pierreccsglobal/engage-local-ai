@@ -1,13 +1,13 @@
 
 import React from 'react';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react';
 import Logo from './Logo';
 
 const Footer = () => {
   return (
     <footer className="bg-gradient-to-b from-black/95 via-zinc-900/40 to-black/98 backdrop-blur-sm border-t border-gold-500/30 py-12 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo et description */}
           <div>
             <div className="mb-4">
@@ -55,6 +55,40 @@ const Footer = () => {
                 <MapPin className="w-5 h-5 text-gold-400 mr-3" />
                 La Garnache, France
               </div>
+            </div>
+          </div>
+
+          {/* Réseaux Sociaux */}
+          <div>
+            <h4 className="text-xl font-semibold text-white mb-4">Suivez-nous</h4>
+            <div className="flex space-x-4">
+              <a 
+                href="https://facebook.com/leadprospect" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-zinc-800 p-3 rounded-full hover:bg-gold-400 hover:text-black transition-all duration-300 text-gray-200"
+                aria-label="Suivez-nous sur Facebook"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a 
+                href="https://instagram.com/leadprospect" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-zinc-800 p-3 rounded-full hover:bg-gold-400 hover:text-black transition-all duration-300 text-gray-200"
+                aria-label="Suivez-nous sur Instagram"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a 
+                href="https://linkedin.com/company/leadprospect" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-zinc-800 p-3 rounded-full hover:bg-gold-400 hover:text-black transition-all duration-300 text-gray-200"
+                aria-label="Suivez-nous sur LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
             </div>
           </div>
         </div>

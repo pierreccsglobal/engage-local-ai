@@ -72,7 +72,7 @@ const Footer = () => {
                 <Facebook className="w-5 h-5" />
               </a>
               <a 
-                href="https://instagram.com/leadprospect" 
+                href="https://www.instagram.com/lead_prospect_fr/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="bg-zinc-800 p-3 rounded-full hover:bg-gold-400 hover:text-black transition-all duration-300 text-gray-200"
@@ -81,7 +81,7 @@ const Footer = () => {
                 <Instagram className="w-5 h-5" />
               </a>
               <a 
-                href="https://linkedin.com/company/leadprospect" 
+                href="https://www.linkedin.com/in/pierre-devaux-lead-prospect/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="bg-zinc-800 p-3 rounded-full hover:bg-gold-400 hover:text-black transition-all duration-300 text-gray-200"

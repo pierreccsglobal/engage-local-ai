@@ -12,34 +12,54 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-zinc-900 to-black">
       <header role="banner">
-        <nav role="navigation" aria-label="Navigation principale">
-          <a href="#services" className="sr-only focus:not-sr-only focus:absolute focus:top-16 focus:left-4 bg-gold-400 text-black px-4 py-2 rounded z-40">
-            Services
-          </a>
-          <a href="#statistiques" className="sr-only focus:not-sr-only focus:absolute focus:top-16 focus:left-24 bg-gold-400 text-black px-4 py-2 rounded z-40">
-            Statistiques
-          </a>
-          <a href="#temoignages" className="sr-only focus:not-sr-only focus:absolute focus:top-16 focus:left-44 bg-gold-400 text-black px-4 py-2 rounded z-40">
-            Témoignages
-          </a>
-          <a href="#contact" className="sr-only focus:not-sr-only focus:absolute focus:top-16 focus:left-64 bg-gold-400 text-black px-4 py-2 rounded z-40">
-            Contact
-          </a>
+        <nav role="navigation" aria-label="Navigation principale" id="main-navigation">
+          <ul className="sr-only focus-within:not-sr-only focus-within:fixed focus-within:top-4 focus-within:left-4 focus-within:bg-zinc-900 focus-within:border focus-within:border-gold-400 focus-within:rounded focus-within:p-4 focus-within:space-y-2 focus-within:z-50">
+            <li>
+              <a href="#services" 
+                 className="block bg-gold-400 text-black px-4 py-2 rounded hover:bg-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-600"
+                 tabIndex={1}>
+                Services
+              </a>
+            </li>
+            <li>
+              <a href="#statistiques" 
+                 className="block bg-gold-400 text-black px-4 py-2 rounded hover:bg-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-600"
+                 tabIndex={2}>
+                Statistiques
+              </a>
+            </li>
+            <li>
+              <a href="#temoignages" 
+                 className="block bg-gold-400 text-black px-4 py-2 rounded hover:bg-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-600"
+                 tabIndex={3}>
+                Témoignages
+              </a>
+            </li>
+            <li>
+              <a href="#contact" 
+                 className="block bg-gold-400 text-black px-4 py-2 rounded hover:bg-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-600"
+                 tabIndex={4}>
+                Contact
+              </a>
+            </li>
+          </ul>
         </nav>
       </header>
       
-      <main id="main-content" role="main">
-        <HeroSection />
-        <section id="services" aria-labelledby="services-heading">
+      <main id="main-content" role="main" tabIndex={-1}>
+        <section id="hero" aria-labelledby="hero-heading">
+          <HeroSection />
+        </section>
+        <section id="services" aria-labelledby="services-heading" tabIndex={-1}>
           <ServicesSection />
         </section>
-        <section id="statistiques" aria-labelledby="stats-heading">
+        <section id="statistiques" aria-labelledby="stats-heading" tabIndex={-1}>
           <StatsSection />
         </section>
-        <section id="temoignages" aria-labelledby="testimonials-heading">
+        <section id="temoignages" aria-labelledby="testimonials-heading" tabIndex={-1}>
           <TestimonialsSection />
         </section>
-        <section id="contact" aria-labelledby="contact-heading">
+        <section id="contact" aria-labelledby="contact-heading" tabIndex={-1}>
           <ContactSection />
         </section>
       </main>

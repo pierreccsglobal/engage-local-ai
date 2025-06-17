@@ -83,7 +83,7 @@ const HeroSection = () => {
         </div>
 
         {/* Titre principal avec effet machine à écrire */}
-        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in animation-delay-200 min-h-[200px] flex flex-col justify-center">
+        <h1 id="hero-heading" className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in animation-delay-200 min-h-[200px] flex flex-col justify-center">
           <span className="relative">
             {displayedText.split(' ').map((word, index) => {
               if (word === 'Visiteurs' || word === 'Clients') {
@@ -107,19 +107,19 @@ const HeroSection = () => {
         </p>
 
         {/* Statistiques rapides avec animation de compteur */}
-        <div className="flex flex-wrap justify-center gap-8 mb-12">
+        <div className="flex flex-wrap justify-center gap-8 mb-12" role="group" aria-label="Statistiques principales">
           <div className="bg-zinc-900/60 backdrop-blur-sm border border-gold-500/30 rounded-lg px-6 py-4 animate-fade-in animation-delay-600 hover:scale-105 hover:border-gold-400/60 transition-all duration-300 hover:shadow-lg hover:shadow-gold-500/30">
             <div className="flex items-center">
-              <Bot className="w-6 h-6 text-gold-400 mr-3" />
+              <Bot className="w-6 h-6 text-gold-400 mr-3" aria-hidden="true" />
               <div>
-                <div className="text-2xl font-bold text-gold-400">+{counters.conversion}%</div>
+                <div className="text-2xl font-bold text-gold-400" aria-live="polite">+{counters.conversion}%</div>
                 <div className="text-sm text-gray-300">Conversions</div>
               </div>
             </div>
           </div>
           <div className="bg-zinc-900/60 backdrop-blur-sm border border-gold-500/30 rounded-lg px-6 py-4 animate-fade-in animation-delay-700 hover:scale-105 hover:border-gold-400/60 transition-all duration-300 hover:shadow-lg hover:shadow-gold-500/30">
             <div className="flex items-center">
-              <Zap className="w-6 h-6 text-gold-400 mr-3" />
+              <Zap className="w-6 h-6 text-gold-400 mr-3" aria-hidden="true" />
               <div>
                 <div className="text-2xl font-bold text-gold-400">24/7</div>
                 <div className="text-sm text-gray-300">Disponible</div>
@@ -128,9 +128,9 @@ const HeroSection = () => {
           </div>
           <div className="bg-zinc-900/60 backdrop-blur-sm border border-gold-500/30 rounded-lg px-6 py-4 animate-fade-in animation-delay-800 hover:scale-105 hover:border-gold-400/60 transition-all duration-300 hover:shadow-lg hover:shadow-gold-500/30">
             <div className="flex items-center">
-              <Target className="w-6 h-6 text-gold-400 mr-3" />
+              <Target className="w-6 h-6 text-gold-400 mr-3" aria-hidden="true" />
               <div>
-                <div className="text-2xl font-bold text-gold-400">ROI x{counters.roi}</div>
+                <div className="text-2xl font-bold text-gold-400" aria-live="polite">ROI x{counters.roi}</div>
                 <div className="text-sm text-gray-300">Garanti</div>
               </div>
             </div>
@@ -141,21 +141,24 @@ const HeroSection = () => {
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-fade-in animation-delay-1000">
           <button 
             onClick={scrollToContact}
-            className="group bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 text-black px-8 py-4 rounded-full font-semibold text-lg shadow-lg shadow-gold-500/30 hover:shadow-xl hover:shadow-gold-400/40 transform hover:scale-105 transition-all duration-300 flex items-center hover:from-gold-400 hover:via-gold-300 hover:to-gold-200 animate-bounce-gentle"
+            className="group bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 text-black px-8 py-4 rounded-full font-semibold text-lg shadow-lg shadow-gold-500/30 hover:shadow-xl hover:shadow-gold-400/40 transform hover:scale-105 transition-all duration-300 flex items-center hover:from-gold-400 hover:via-gold-300 hover:to-gold-200 animate-bounce-gentle focus:outline-none focus:ring-2 focus:ring-gold-600"
+            tabIndex={5}
+            aria-describedby="cta-description"
           >
             Démarrer Maintenant
-            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" aria-hidden="true" />
           </button>
           <button 
             onClick={openChatbot}
-            className="border-2 border-gold-400 text-gold-400 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gold-400 hover:text-black transition-all duration-300 backdrop-blur-sm hover:scale-105 hover:shadow-lg hover:shadow-gold-400/30"
+            className="border-2 border-gold-400 text-gold-400 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gold-400 hover:text-black transition-all duration-300 backdrop-blur-sm hover:scale-105 hover:shadow-lg hover:shadow-gold-400/30 focus:outline-none focus:ring-2 focus:ring-gold-600"
+            tabIndex={6}
           >
             Voir une Démo
           </button>
         </div>
 
         {/* Call to action secondaire avec animation */}
-        <p className="text-gray-300 mt-8 animate-fade-in animation-delay-1200 hover:text-gray-100 transition-colors duration-300">
+        <p id="cta-description" className="text-gray-300 mt-8 animate-fade-in animation-delay-1200 hover:text-gray-100 transition-colors duration-300">
           🎯 Audit gratuit de votre site • 📞 Consultation stratégique offerte • ⚡ Résultats sous 30 jours
         </p>
       </div>

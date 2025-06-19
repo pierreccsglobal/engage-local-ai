@@ -66,18 +66,11 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
+				// Palette gold optimisée - uniquement les couleurs utilisées
 				gold: {
-					50: '#fefdf8',
-					100: '#fdf9e7',
-					200: '#fbf1c4',
 					300: '#f7e396',
 					400: '#f1d065',
 					500: '#e8b73e',
-					600: '#d69e2e',
-					700: '#b7791f',
-					800: '#975a16',
-					900: '#744210',
-					950: '#4a2c0a'
 				}
 			},
 			borderRadius: {
@@ -110,4 +103,11 @@ export default {
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
+	// Optimisation pour réduire la taille du CSS généré
+	corePlugins: {
+		// Désactiver les plugins inutilisés
+		float: false,
+		clear: false,
+		skew: false,
+	}
 } satisfies Config;

@@ -43,19 +43,20 @@ const Index = () => {
       </header>
       
       <main id="main-content" role="main" tabIndex={-1}>
-        <section id="hero" aria-labelledby="hero-heading">
+        {/* Sections avec hauteurs minimales réservées pour éviter CLS */}
+        <section id="hero" aria-labelledby="hero-heading" style={{ minHeight: '100vh' }}>
           <HeroSection />
         </section>
-        <section id="services" aria-labelledby="services-heading" tabIndex={-1}>
+        <section id="services" aria-labelledby="services-heading" tabIndex={-1} style={{ minHeight: '800px' }}>
           <ServicesSection />
         </section>
-        <section id="statistiques" aria-labelledby="stats-heading" tabIndex={-1}>
+        <section id="statistiques" aria-labelledby="stats-heading" tabIndex={-1} style={{ minHeight: '600px' }}>
           <StatsSection />
         </section>
-        <section id="temoignages" aria-labelledby="testimonials-heading" tabIndex={-1}>
+        <section id="temoignages" aria-labelledby="testimonials-heading" tabIndex={-1} style={{ minHeight: '600px' }}>
           <TestimonialsSection />
         </section>
-        <section id="contact" aria-labelledby="contact-heading" tabIndex={-1}>
+        <section id="contact" aria-labelledby="contact-heading" tabIndex={-1} style={{ minHeight: '500px' }}>
           <ContactSection />
         </section>
       </main>

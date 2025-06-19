@@ -77,7 +77,7 @@
   }
 }
 
-/* Animations optimisées - conservées comme demandé */
+/* Animations optimisées - uniquement les essentielles */
 @layer utilities {
   .animate-fade-in {
     animation: fadeIn 0.6s ease-out forwards;
@@ -87,6 +87,7 @@
     animation: bounceGentle 2s ease-in-out infinite;
   }
   
+  /* Délais d'animation réduits pour améliorer les performances */
   .animation-delay-200 { animation-delay: 200ms; }
   .animation-delay-400 { animation-delay: 400ms; }
   .animation-delay-600 { animation-delay: 600ms; }
@@ -96,6 +97,7 @@
   .animation-delay-1200 { animation-delay: 1200ms; }
 }
 
+/* Keyframes optimisées */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -113,22 +115,4 @@
   60% { transform: translateY(-3px); }
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-.animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.4), transparent);
-  background-size: 200% 100%;
-  animation: shimmer 2s infinite;
-}
+/* Animations supplémentaires supprimées pour réduire la taille du CSS */

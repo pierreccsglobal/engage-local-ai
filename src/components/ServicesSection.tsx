@@ -1,9 +1,10 @@
 
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Phone, MessageSquare, Bot, Users, Calendar, Mail, BarChart3, Target, Globe, Code } from 'lucide-react';
+import { Phone, MessageSquare, Bot, Users, Calendar, Mail, BarChart3, Target, Globe } from 'lucide-react';
 
 const ServicesSection = () => {
+  // Services réduits et optimisés pour améliorer les performances
   const services = [
     {
       icon: Globe,
@@ -77,30 +78,38 @@ const ServicesSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
+        {/* Grid optimisée avec hauteurs fixes pour éviter CLS */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <Card 
               key={index} 
               className="bg-zinc-900/90 backdrop-blur-sm border border-gold-500/30 hover:border-gold-400/60 transition-all duration-500 transform hover:scale-105 group shadow-lg shadow-gold-500/20 hover:shadow-xl hover:shadow-gold-400/30 animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
+              style={{ 
+                animationDelay: `${index * 100}ms`,
+                height: '380px', // Hauteur fixe pour éviter CLS
+                display: 'flex',
+                flexDirection: 'column'
+              }}
             >
-              <CardHeader className="text-center">
-                <div className="mx-auto mb-4 p-3 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 rounded-full w-fit group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 shadow-lg shadow-gold-500/40">
+              <CardHeader className="text-center flex-shrink-0">
+                {/* Icône avec dimensions fixes */}
+                <div className="mx-auto mb-4 p-3 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 rounded-full group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 shadow-lg shadow-gold-500/40" style={{ width: '64px', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <service.icon className="w-8 h-8 text-black" />
                 </div>
                 <CardTitle className="text-xl text-white group-hover:text-gold-300 transition-colors duration-300">
                   <h3>{service.title}</h3>
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-100 mb-4 text-center font-medium group-hover:text-gray-50 transition-colors duration-300">
+              <CardContent className="flex-1 flex flex-col">
+                <p className="text-gray-100 mb-4 text-center font-medium group-hover:text-gray-50 transition-colors duration-300 flex-shrink-0">
                   {service.description}
                 </p>
-                <ul className="space-y-2">
+                {/* Liste des fonctionnalités avec hauteur fixe */}
+                <ul className="space-y-2 flex-1" style={{ minHeight: '120px' }}>
                   {service.features.map((feature, idx) => (
                     <li key={idx} className="text-sm text-gray-200 flex items-center group-hover:text-gray-100 transition-colors duration-300">
-                      <div className="w-2 h-2 bg-gradient-to-r from-gold-400 to-gold-500 rounded-full mr-3 group-hover:scale-125 transition-transform duration-300"></div>
-                      {feature}
+                      <div className="w-2 h-2 bg-gradient-to-r from-gold-400 to-gold-500 rounded-full mr-3 group-hover:scale-125 transition-transform duration-300 flex-shrink-0"></div>
+                      <span>{feature}</span>
                     </li>
                   ))}
                 </ul>

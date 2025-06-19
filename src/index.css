@@ -100,52 +100,55 @@
 
   body {
     @apply bg-background text-foreground;
+    font-display: swap;
   }
 }
 
-/* Animations personnalisées */
+/* Animations optimisées - réduites pour les performances */
 @layer utilities {
   .animate-fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
+    animation: fadeIn 0.3s ease-out forwards;
   }
   
+  /* Animation bounce supprimée pour les performances */
   .animate-bounce-gentle {
-    animation: bounceGentle 2s ease-in-out infinite;
+    transform: translateY(0);
   }
   
+  /* Délais d'animation réduits */
   .animation-delay-200 {
-    animation-delay: 200ms;
+    animation-delay: 100ms;
   }
   
   .animation-delay-400 {
-    animation-delay: 400ms;
+    animation-delay: 200ms;
   }
   
   .animation-delay-600 {
-    animation-delay: 600ms;
+    animation-delay: 300ms;
   }
   
   .animation-delay-700 {
-    animation-delay: 700ms;
+    animation-delay: 350ms;
   }
   
   .animation-delay-800 {
-    animation-delay: 800ms;
+    animation-delay: 400ms;
   }
   
   .animation-delay-1000 {
-    animation-delay: 1000ms;
+    animation-delay: 500ms;
   }
   
   .animation-delay-1200 {
-    animation-delay: 1200ms;
+    animation-delay: 600ms;
   }
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(15px);
   }
   to {
     opacity: 1;
@@ -153,45 +156,21 @@
   }
 }
 
-/* Animation de mouvement doux pour le bouton */
-@keyframes bounceGentle {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-8px);
-  }
-  60% {
-    transform: translateY(-4px);
-  }
-}
-
-/* Animation de flottement pour les éléments */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
+/* Animations supprimées pour améliorer les performances */
 .animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-/* Animation de brillance pour les éléments gold */
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+  transform: translateY(0);
 }
 
 .animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.4), transparent);
-  background-size: 200% 100%;
-  animation: shimmer 2s infinite;
+  background: transparent;
+}
+
+/* Optimisation pour réduire les reflows */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.gpu-acceleration {
+  will-change: transform;
+  transform: translateZ(0);
 }

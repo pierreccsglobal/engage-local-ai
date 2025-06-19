@@ -11,14 +11,27 @@
     <link rel="icon" href="/logo-icon.svg" type="image/svg+xml">
     <link rel="canonical" href="https://leadprospect.fr/" />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQPZGBB86E"></script>
+    <!-- Préconnexion pour optimiser les performances -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Police optimisée - une seule famille avec 2 poids maximum -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Google Analytics différé -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-XQPZGBB86E');
+      
+      // Chargement différé de Google Analytics
+      setTimeout(function() {
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-XQPZGBB86E';
+        document.head.appendChild(script);
+      }, 3000);
     </script>
 
     <!-- Open Graph / Facebook -->
@@ -42,16 +55,24 @@
     <meta name="twitter:image" content="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=630&fit=crop&crop=center&auto=format&q=80" />
     <meta name="twitter:site" content="@LeadProspect" />
     
-    <!-- Script Calendly -->
-    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <!-- Script Calendly différé -->
+    <script>
+      // Chargement différé de Calendly
+      setTimeout(function() {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://assets.calendly.com/assets/external/widget.js';
+        script.async = true;
+        document.head.appendChild(script);
+      }, 5000);
+    </script>
 
-    <!-- Redirection automatique vers HTTPS non-www -->
+    <!-- Redirection automatique vers HTTPS non-www optimisée -->
     <script>
       (function() {
         var currentUrl = window.location;
         var canonicalUrl = 'https://leadprospect.fr';
         
-        // Vérifier si nous ne sommes pas déjà sur l'URL canonique
         if (currentUrl.protocol !== 'https:' || currentUrl.hostname === 'www.leadprospect.fr') {
           var newUrl = canonicalUrl + currentUrl.pathname + currentUrl.search + currentUrl.hash;
           window.location.replace(newUrl);
@@ -74,6 +95,16 @@
     <script type="module" src="/src/main.tsx"></script>
     
     <style>
+      /* Police système par défaut pour éviter FOIT */
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      }
+      
+      /* Application de la police Google une fois chargée */
+      .font-loaded {
+        font-family: 'Inter', sans-serif;
+      }
+      
       .skip-link {
         position: absolute;
         top: -40px;
@@ -117,26 +148,26 @@
       }
     </style>
     
-    <!-- Script pour gérer le code de statut 404 côté client -->
+    <!-- Script optimisé pour gérer le code de statut 404 -->
     <script>
-      // Vérifier si nous sommes sur une route 404
       window.addEventListener('load', function() {
+        // Appliquer la police une fois chargée
+        document.body.classList.add('font-loaded');
+        
+        // Gestion 404 optimisée
         if (window.location.pathname !== '/' && 
             !window.location.pathname.startsWith('/admin') && 
             window.location.pathname !== '/favicon.ico' &&
             !window.location.pathname.startsWith('/assets/')) {
           
-          // Essayer de définir le code de statut pour les crawlers
-          if (typeof window.history !== 'undefined') {
-            try {
-              window.history.replaceState(
-                { ...window.history.state, statusCode: 404 },
-                '',
-                window.location.pathname
-              );
-            } catch (e) {
-              console.log('Could not set 404 status code:', e);
-            }
+          try {
+            window.history.replaceState(
+              { ...window.history.state, statusCode: 404 },
+              '',
+              window.location.pathname
+            );
+          } catch (e) {
+            console.log('Could not set 404 status code:', e);
           }
         }
       });

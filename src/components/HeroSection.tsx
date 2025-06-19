@@ -135,11 +135,11 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Boutons optimisés */}
+        {/* Boutons avec animations */}
         <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center animate-fade-in animation-delay-1000">
           <button 
             onClick={scrollToContact}
-            className="w-full sm:w-auto group bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 text-black px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold text-lg shadow-lg shadow-gold-500/30 hover:shadow-xl hover:shadow-gold-400/40 transform hover:scale-105 transition-all duration-300 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-gold-600"
+            className="w-full sm:w-auto group bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 text-black px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold text-lg shadow-lg shadow-gold-500/30 hover:shadow-xl hover:shadow-gold-400/40 transform hover:scale-105 transition-all duration-300 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-gold-600 animate-bounce-gentle"
             aria-describedby="cta-description"
           >
             Démarrer Maintenant
@@ -147,7 +147,7 @@ const HeroSection = () => {
           </button>
           <button 
             onClick={openChatbot}
-            className="w-full sm:w-auto border-2 border-gold-400 text-gold-400 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold text-lg hover:bg-gold-400 hover:text-black transition-all duration-300 backdrop-blur-sm hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gold-600"
+            className="w-full sm:w-auto border-2 border-gold-400 text-gold-400 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold text-lg hover:bg-gold-400 hover:text-black transition-all duration-300 backdrop-blur-sm hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gold-600 animate-bounce-gentle"
           >
             Voir une Démo
           </button>

@@ -133,7 +133,7 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Boutons d'action simplifiés */}
+        {/* Boutons d'action avec animations restaurées */}
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
           <button 
             onClick={scrollToContact}
@@ -141,11 +141,11 @@ const HeroSection = () => {
             aria-describedby="cta-description"
           >
             Démarrer Maintenant
-            <ArrowRight className="ml-2 w-5 h-5" aria-hidden="true" />
+            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true" />
           </button>
           <button 
             onClick={openChatbot}
-            className="border-2 border-gold-400 text-gold-400 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gold-400 hover:text-black transition-all duration-300 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-gold-600"
+            className="border-2 border-gold-400 text-gold-400 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gold-400 hover:text-black hover:shadow-lg hover:shadow-gold-400/25 transition-all duration-300 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-gold-600"
           >
             Voir une Démo
           </button>

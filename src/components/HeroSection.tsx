@@ -103,39 +103,8 @@ const HeroSection = () => {
           déployons des agents IA 24/7 pour maximiser vos conversions.
         </p>
 
-        {/* Statistiques avec dimensions fixes pour éviter CLS */}
-        <div className="hero-stats" role="group" aria-label="Statistiques principales">
-          <div className="bg-zinc-900/60 backdrop-blur-sm border border-gold-500/30 rounded-lg px-6 py-4 animate-fade-in animation-delay-600 hover:scale-105 hover:border-gold-400/60 transition-all duration-300">
-            <div className="flex items-center">
-              <Bot className="w-6 h-6 text-gold-400 mr-3" aria-hidden="true" />
-              <div>
-                <div className="text-2xl font-semibold text-gold-400" aria-live="polite">+{counters.conversion}%</div>
-                <div className="text-sm text-gray-300">Conversions</div>
-              </div>
-            </div>
-          </div>
-          <div className="bg-zinc-900/60 backdrop-blur-sm border border-gold-500/30 rounded-lg px-6 py-4 animate-fade-in animation-delay-700 hover:scale-105 hover:border-gold-400/60 transition-all duration-300">
-            <div className="flex items-center">
-              <Zap className="w-6 h-6 text-gold-400 mr-3" aria-hidden="true" />
-              <div>
-                <div className="text-2xl font-semibold text-gold-400">24/7</div>
-                <div className="text-sm text-gray-300">Disponible</div>
-              </div>
-            </div>
-          </div>
-          <div className="bg-zinc-900/60 backdrop-blur-sm border border-gold-500/30 rounded-lg px-6 py-4 animate-fade-in animation-delay-800 hover:scale-105 hover:border-gold-400/60 transition-all duration-300">
-            <div className="flex items-center">
-              <Target className="w-6 h-6 text-gold-400 mr-3" aria-hidden="true" />
-              <div>
-                <div className="text-2xl font-semibold text-gold-400" aria-live="polite">ROI x{counters.roi}</div>
-                <div className="text-sm text-gray-300">Garanti</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Boutons avec dimensions fixes pour éviter CLS */}
-        <div className="hero-buttons animate-fade-in animation-delay-1000">
+        {/* Boutons CTA déplacés ici, juste après le sous-titre */}
+        <div className="hero-buttons animate-fade-in animation-delay-600 mb-12">
           <button 
             onClick={scrollToContact}
             className="group bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 text-black px-8 py-4 rounded-full font-semibold text-lg shadow-lg shadow-gold-500/30 hover:shadow-xl hover:shadow-gold-400/40 transform hover:scale-105 transition-all duration-300 flex items-center hover:from-gold-400 hover:via-gold-300 hover:to-gold-200 animate-bounce-gentle focus:outline-none focus:ring-2 focus:ring-gold-600"
@@ -150,6 +119,37 @@ const HeroSection = () => {
           >
             Voir une Démo
           </button>
+        </div>
+
+        {/* Statistiques avec dimensions fixes pour éviter CLS */}
+        <div className="hero-stats" role="group" aria-label="Statistiques principales">
+          <div className="bg-zinc-900/60 backdrop-blur-sm border border-gold-500/30 rounded-lg px-6 py-4 animate-fade-in animation-delay-800 hover:scale-105 hover:border-gold-400/60 transition-all duration-300">
+            <div className="flex items-center">
+              <Bot className="w-6 h-6 text-gold-400 mr-3" aria-hidden="true" />
+              <div>
+                <div className="text-2xl font-semibold text-gold-400" aria-live="polite">+{counters.conversion}%</div>
+                <div className="text-sm text-gray-300">Conversions</div>
+              </div>
+            </div>
+          </div>
+          <div className="bg-zinc-900/60 backdrop-blur-sm border border-gold-500/30 rounded-lg px-6 py-4 animate-fade-in animation-delay-900 hover:scale-105 hover:border-gold-400/60 transition-all duration-300">
+            <div className="flex items-center">
+              <Zap className="w-6 h-6 text-gold-400 mr-3" aria-hidden="true" />
+              <div>
+                <div className="text-2xl font-semibold text-gold-400">24/7</div>
+                <div className="text-sm text-gray-300">Disponible</div>
+              </div>
+            </div>
+          </div>
+          <div className="bg-zinc-900/60 backdrop-blur-sm border border-gold-500/30 rounded-lg px-6 py-4 animate-fade-in animation-delay-1000 hover:scale-105 hover:border-gold-400/60 transition-all duration-300">
+            <div className="flex items-center">
+              <Target className="w-6 h-6 text-gold-400 mr-3" aria-hidden="true" />
+              <div>
+                <div className="text-2xl font-semibold text-gold-400" aria-live="polite">ROI x{counters.roi}</div>
+                <div className="text-sm text-gray-300">Garanti</div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <p id="cta-description" className="text-gray-300 mt-8 animate-fade-in animation-delay-1200 hover:text-gray-100 transition-colors duration-300 font-normal">

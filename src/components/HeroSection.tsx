@@ -133,7 +133,7 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Boutons d'action avec animations restaurées */}
+        {/* Boutons d'action avec animations complètes restaurées */}
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
           <button 
             onClick={scrollToContact}
@@ -145,7 +145,7 @@ const HeroSection = () => {
           </button>
           <button 
             onClick={openChatbot}
-            className="border-2 border-gold-400 text-gold-400 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gold-400 hover:text-black hover:shadow-lg hover:shadow-gold-400/25 transition-all duration-300 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-gold-600"
+            className="border-2 border-gold-400 text-gold-400 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gold-400 hover:text-black hover:scale-105 hover:shadow-lg hover:shadow-gold-400/25 transition-all duration-300 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-gold-600"
           >
             Voir une Démo
           </button>

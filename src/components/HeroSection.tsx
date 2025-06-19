@@ -133,11 +133,11 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Boutons d'action avec effet pulse */}
+        {/* Boutons d'action avec mouvement vertical */}
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
           <button 
             onClick={scrollToContact}
-            className="group bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 text-black px-8 py-4 rounded-full font-semibold text-lg shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-gold-600 animate-pulse"
+            className="group bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 text-black px-8 py-4 rounded-full font-semibold text-lg shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-gold-600 animate-bounce"
             aria-describedby="cta-description"
           >
             Démarrer Maintenant
@@ -145,7 +145,7 @@ const HeroSection = () => {
           </button>
           <button 
             onClick={openChatbot}
-            className="border-2 border-gold-400 text-gold-400 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gold-400 hover:text-black hover:scale-105 hover:shadow-lg hover:shadow-gold-400/25 transition-all duration-300 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-gold-600 animate-pulse"
+            className="border-2 border-gold-400 text-gold-400 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gold-400 hover:text-black hover:scale-105 hover:shadow-lg hover:shadow-gold-400/25 transition-all duration-300 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-gold-600"
           >
             Voir une Démo
           </button>

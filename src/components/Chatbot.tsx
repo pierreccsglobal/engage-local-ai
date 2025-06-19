@@ -244,11 +244,11 @@ const Chatbot = () => {
 
   return (
     <>
-      {/* Bouton flottant */}
+      {/* Bouton flottant avec mouvement vertical */}
       <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3">
         <div 
           onClick={() => setIsOpen(true)}
-          className="bg-gold-400 text-black px-4 py-2 rounded-lg shadow-lg animate-bounce-gentle cursor-pointer hover:bg-gold-500 hover:scale-105 transition-all duration-300 hover:shadow-xl hover:shadow-gold-400/40"
+          className="bg-gold-400 text-black px-4 py-2 rounded-lg shadow-lg cursor-pointer hover:bg-gold-500 hover:scale-105 transition-all duration-300 hover:shadow-xl hover:shadow-gold-400/40"
         >
           <span className="text-sm font-medium">Vous avez des questions ?</span>
         </div>
@@ -256,7 +256,7 @@ const Chatbot = () => {
           <DialogTrigger asChild>
             <Button
               data-chatbot-trigger
-              className="w-14 h-14 rounded-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 text-black shadow-lg shadow-gold-500/30 hover:shadow-xl hover:shadow-gold-400/40 hover:scale-110 transition-all duration-300 animate-bounce-gentle"
+              className="w-14 h-14 rounded-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 text-black shadow-lg shadow-gold-500/30 hover:shadow-xl hover:shadow-gold-400/40 hover:scale-110 transition-all duration-300 animate-bounce"
             >
               <MessageCircle className="w-6 h-6" />
             </Button>

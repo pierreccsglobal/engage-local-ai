@@ -16,10 +16,11 @@ const StatsSection = () => {
       ([entry]) => {
         if (entry.isIntersecting && !isVisible) {
           setIsVisible(true);
+          // Démarrer l'animation des compteurs
           animateCounters();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 } // Réduit de 0.5 à 0.1 pour déclencher plus tôt sur mobile
     );
 
     if (sectionRef.current) {
@@ -30,8 +31,8 @@ const StatsSection = () => {
   }, [isVisible]);
 
   const animateCounters = () => {
-    const duration = 2000;
-    const steps = 40;
+    const duration = 2500;
+    const steps = 60;
     const interval = duration / steps;
 
     let step = 0;
@@ -83,13 +84,13 @@ const StatsSection = () => {
     <section ref={sectionRef} className="py-20 px-4 bg-gradient-to-r from-zinc-900/60 via-black/80 to-zinc-800/60">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 id="stats-heading" className="text-4xl md:text-5xl font-semibold text-white mb-6 animate-fade-in">
+          <h2 id="stats-heading" className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
             Des Résultats Qui{' '}
             <span className="bg-gradient-to-r from-gold-400 to-gold-500 bg-clip-text text-transparent">
               Parlent
             </span>
           </h2>
-          <p className="text-xl text-gray-200 max-w-3xl mx-auto animate-fade-in animation-delay-200 font-normal">
+          <p className="text-xl text-gray-200 max-w-3xl mx-auto animate-fade-in animation-delay-200">
             Nos clients obtiennent des résultats mesurables grâce à notre approche 
             data-driven et notre infrastructure IA de pointe
           </p>
@@ -99,22 +100,19 @@ const StatsSection = () => {
           {stats.map((stat, index) => (
             <div 
               key={index}
-              className="text-center bg-zinc-900/90 backdrop-blur-sm rounded-xl p-8 border border-gold-500/30 hover:border-gold-400/50 transition-all duration-500 transform hover:scale-105 shadow-lg shadow-gold-500/20 animate-fade-in group"
-              style={{ 
-                animationDelay: `${index * 150}ms`,
-                minHeight: '280px'  // Hauteur fixe pour éviter CLS
-              }}
+              className="text-center bg-zinc-900/90 backdrop-blur-sm rounded-xl p-8 border border-gold-500/30 hover:border-gold-400/50 transition-all duration-500 transform hover:scale-110 hover:rotate-1 shadow-lg shadow-gold-500/20 hover:shadow-xl hover:shadow-gold-400/40 animate-fade-in group"
+              style={{ animationDelay: `${index * 150}ms` }}
             >
-              <div className="mx-auto mb-6 p-4 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 rounded-full w-fit shadow-lg shadow-gold-500/40 group-hover:scale-110 transition-all duration-300" style={{ width: '80px', height: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div className="mx-auto mb-6 p-4 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 rounded-full w-fit shadow-lg shadow-gold-500/40 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                 <stat.icon className="w-8 h-8 text-black" />
               </div>
-              <div className="text-4xl md:text-5xl font-semibold text-gold-400 mb-2 group-hover:text-gold-300 transition-colors duration-300">
+              <div className="text-4xl md:text-5xl font-bold text-gold-400 mb-2 group-hover:text-gold-300 transition-colors duration-300">
                 {stat.value}
               </div>
               <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-gray-100 transition-colors duration-300">
                 {stat.label}
               </h3>
-              <div className="text-gray-200 text-sm group-hover:text-gray-100 transition-colors duration-300 font-normal">
+              <div className="text-gray-200 text-sm group-hover:text-gray-100 transition-colors duration-300">
                 {stat.description}
               </div>
             </div>

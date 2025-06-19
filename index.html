@@ -11,23 +11,25 @@
     <link rel="icon" href="/logo-icon.svg" type="image/svg+xml">
     <link rel="canonical" href="https://leadprospect.fr/" />
 
-    <!-- Preconnect pour les ressources externes critiques -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-    
-    <!-- Police optimisée - une seule police avec 2 poids -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQPZGBB86E"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XQPZGBB86E');
+    </script>
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://leadprospect.fr/" />
     <meta property="og:title" content="Lead Prospect - Agence IA pour Entreprises Locales" />
     <meta property="og:description" content="Site web + agents IA 24/7 pour entreprises locales. Chatbot, agent vocal, CRM intelligent. +100% conversions garanties." />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=630&fit=crop&crop=center&auto=format&fm=webp&q=80" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=630&fit=crop&crop=center&auto=format&q=80" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:alt" content="Lead Prospect - Solutions IA pour entreprises locales" />
     <meta property="og:site_name" content="Lead Prospect" />
     <meta property="og:locale" content="fr_FR" />
@@ -37,8 +39,11 @@
     <meta name="twitter:url" content="https://leadprospect.fr/" />
     <meta name="twitter:title" content="Engage Local AI" />
     <meta name="twitter:description" content="Attirez plus de clients locaux grâce à l'intelligence artificielle." />
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=630&fit=crop&crop=center&auto=format&fm=webp&q=80" />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=630&fit=crop&crop=center&auto=format&q=80" />
     <meta name="twitter:site" content="@LeadProspect" />
+    
+    <!-- Script Calendly -->
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
     <!-- Redirection automatique vers HTTPS non-www -->
     <script>
@@ -46,18 +51,29 @@
         var currentUrl = window.location;
         var canonicalUrl = 'https://leadprospect.fr';
         
+        // Vérifier si nous ne sommes pas déjà sur l'URL canonique
         if (currentUrl.protocol !== 'https:' || currentUrl.hostname === 'www.leadprospect.fr') {
           var newUrl = canonicalUrl + currentUrl.pathname + currentUrl.search + currentUrl.hash;
           window.location.replace(newUrl);
         }
       })();
     </script>
+  </head>
 
-    <!-- CSS critique inline pour éviter le FOUC -->
+  <body>
+    <!-- Menu de navigation accessible par skip links -->
+    <nav id="skip-navigation" role="navigation" aria-label="Liens de navigation rapide" class="sr-only">
+      <a href="#main-content" class="skip-link" accesskey="c">Aller au contenu principal (Alt+C)</a>
+      <a href="#services" class="skip-link" accesskey="s">Aller aux services (Alt+S)</a>
+      <a href="#statistiques" class="skip-link" accesskey="t">Aller aux statistiques (Alt+T)</a>
+      <a href="#temoignages" class="skip-link" accesskey="e">Aller aux témoignages (Alt+E)</a>
+      <a href="#contact" class="skip-link" accesskey="o">Aller au contact (Alt+O)</a>
+    </nav>
+    
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
     <style>
-      /* Critical CSS */
-      body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-      .hero-container { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
       .skip-link {
         position: absolute;
         top: -40px;
@@ -67,7 +83,7 @@
         padding: 8px 16px;
         text-decoration: none;
         border-radius: 4px;
-        font-weight: 600;
+        font-weight: bold;
         z-index: 9999;
         transition: top 0.3s;
       }
@@ -100,67 +116,27 @@
         white-space: normal;
       }
     </style>
-  </head>
-
-  <body>
-    <!-- Menu de navigation accessible par skip links -->
-    <nav id="skip-navigation" role="navigation" aria-label="Liens de navigation rapide" class="sr-only">
-      <a href="#main-content" class="skip-link" accesskey="c">Aller au contenu principal (Alt+C)</a>
-      <a href="#services" class="skip-link" accesskey="s">Aller aux services (Alt+S)</a>
-      <a href="#statistiques" class="skip-link" accesskey="t">Aller aux statistiques (Alt+T)</a>
-      <a href="#temoignages" class="skip-link" accesskey="e">Aller aux témoignages (Alt+E)</a>
-      <a href="#contact" class="skip-link" accesskey="o">Aller au contact (Alt+O)</a>
-    </nav>
-    
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-    
-    <!-- Scripts tiers différés pour ne pas bloquer le rendu -->
-    <script>
-      // Chargement différé de Google Analytics
-      window.addEventListener('load', function() {
-        setTimeout(function() {
-          var script = document.createElement('script');
-          script.async = true;
-          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-XQPZGBB86E';
-          document.head.appendChild(script);
-          
-          script.onload = function() {
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-XQPZGBB86E');
-          };
-        }, 3000); // Délai de 3 secondes après le chargement
-      });
-
-      // Chargement différé de Calendly
-      window.addEventListener('load', function() {
-        setTimeout(function() {
-          var script = document.createElement('script');
-          script.async = true;
-          script.src = 'https://assets.calendly.com/assets/external/widget.js';
-          document.head.appendChild(script);
-        }, 5000); // Délai de 5 secondes
-      });
-    </script>
     
     <!-- Script pour gérer le code de statut 404 côté client -->
     <script>
+      // Vérifier si nous sommes sur une route 404
       window.addEventListener('load', function() {
         if (window.location.pathname !== '/' && 
             !window.location.pathname.startsWith('/admin') && 
             window.location.pathname !== '/favicon.ico' &&
             !window.location.pathname.startsWith('/assets/')) {
           
-          try {
-            window.history.replaceState(
-              { ...window.history.state, statusCode: 404 },
-              '',
-              window.location.pathname
-            );
-          } catch (e) {
-            console.log('Could not set 404 status code:', e);
+          // Essayer de définir le code de statut pour les crawlers
+          if (typeof window.history !== 'undefined') {
+            try {
+              window.history.replaceState(
+                { ...window.history.state, statusCode: 404 },
+                '',
+                window.location.pathname
+              );
+            } catch (e) {
+              console.log('Could not set 404 status code:', e);
+            }
           }
         }
       });

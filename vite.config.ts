@@ -21,14 +21,16 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    // Optimisations pour la production
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
+    // Optimisations pour la production uniquement
+    ...(mode === 'production' && {
+      minify: 'terser',
+      terserOptions: {
+        compress: {
+          drop_console: true,
+          drop_debugger: true,
+        },
       },
-    },
+    }),
     rollupOptions: {
       output: {
         manualChunks: {
@@ -39,7 +41,7 @@ export default defineConfig(({ mode }) => ({
       },
     },
     cssCodeSplit: true,
-    sourcemap: false,
+    sourcemap: mode === 'development',
     reportCompressedSize: false,
   },
   // Configuration du cache

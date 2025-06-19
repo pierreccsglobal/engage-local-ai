@@ -11,14 +11,28 @@
     <link rel="icon" href="/logo-icon.svg" type="image/svg+xml">
     <link rel="canonical" href="https://leadprospect.fr/" />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQPZGBB86E"></script>
+    <!-- Preconnect pour améliorer les performances -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    
+    <!-- Police optimisée - une seule police avec 2 poids -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Google tag (gtag.js) - différé -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-XQPZGBB86E');
+      
+      // Chargement différé de GA
+      setTimeout(function() {
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-XQPZGBB86E';
+        document.head.appendChild(script);
+      }, 3000);
     </script>
 
     <!-- Open Graph / Facebook -->
@@ -26,10 +40,10 @@
     <meta property="og:url" content="https://leadprospect.fr/" />
     <meta property="og:title" content="Lead Prospect - Agence IA pour Entreprises Locales" />
     <meta property="og:description" content="Site web + agents IA 24/7 pour entreprises locales. Chatbot, agent vocal, CRM intelligent. +100% conversions garanties." />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=630&fit=crop&crop=center&auto=format&q=80" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=630&fit=crop&crop=center&auto=format&q=80&fm=webp" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:type" content="image/webp" />
     <meta property="og:image:alt" content="Lead Prospect - Solutions IA pour entreprises locales" />
     <meta property="og:site_name" content="Lead Prospect" />
     <meta property="og:locale" content="fr_FR" />
@@ -39,11 +53,19 @@
     <meta name="twitter:url" content="https://leadprospect.fr/" />
     <meta name="twitter:title" content="Engage Local AI" />
     <meta name="twitter:description" content="Attirez plus de clients locaux grâce à l'intelligence artificielle." />
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=630&fit=crop&crop=center&auto=format&q=80" />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=630&fit=crop&crop=center&auto=format&q=80&fm=webp" />
     <meta name="twitter:site" content="@LeadProspect" />
     
-    <!-- Script Calendly -->
-    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <!-- Script Calendly - chargement différé -->
+    <script>
+      // Chargement différé de Calendly
+      setTimeout(function() {
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://assets.calendly.com/assets/external/widget.js';
+        document.head.appendChild(script);
+      }, 5000);
+    </script>
 
     <!-- Redirection automatique vers HTTPS non-www -->
     <script>

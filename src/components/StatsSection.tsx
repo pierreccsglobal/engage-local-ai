@@ -86,48 +86,44 @@ const StatsSection = () => {
     <section ref={sectionRef} className="py-20 px-4 bg-gradient-to-r from-zinc-900/60 via-black/80 to-zinc-800/60">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 id="stats-heading" className="text-4xl md:text-5xl font-semibold text-white mb-6 animate-fade-in">
+          <h2 id="stats-heading" className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-6 animate-fade-in px-4">
             Des Résultats Qui{' '}
             <span className="bg-gradient-to-r from-gold-400 to-gold-500 bg-clip-text text-transparent">
               Parlent
             </span>
           </h2>
-          <p className="text-xl text-gray-200 max-w-3xl mx-auto animate-fade-in animation-delay-200 font-normal">
+          <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto animate-fade-in animation-delay-200 font-normal px-4">
             Nos clients obtiennent des résultats mesurables grâce à notre approche 
             data-driven et notre infrastructure IA de pointe
           </p>
         </div>
 
-        {/* Grid optimisée avec hauteurs fixes pour éviter CLS */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Grid responsive avec hauteurs flexibles */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {stats.map((stat, index) => (
             <div 
               key={index}
-              className="text-center bg-zinc-900/90 backdrop-blur-sm rounded-xl p-8 border border-gold-500/30 hover:border-gold-400/50 transition-all duration-500 transform hover:scale-105 shadow-lg shadow-gold-500/20 animate-fade-in group"
+              className="text-center bg-zinc-900/90 backdrop-blur-sm rounded-xl p-6 lg:p-8 border border-gold-500/30 hover:border-gold-400/50 transition-all duration-500 transform hover:scale-105 shadow-lg shadow-gold-500/20 animate-fade-in group flex flex-col"
               style={{ 
-                animationDelay: `${index * 150}ms`,
-                height: '300px', // Hauteur fixe pour éviter CLS
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between'
+                animationDelay: `${index * 150}ms`
               }}
             >
               {/* Icône avec dimensions fixes */}
-              <div className="flex justify-center mb-6">
-                <div className="p-4 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 rounded-full shadow-lg shadow-gold-500/40 group-hover:scale-110 transition-all duration-300" style={{ width: '80px', height: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <stat.icon className="w-8 h-8 text-black" />
+              <div className="flex justify-center mb-4 lg:mb-6">
+                <div className="p-3 lg:p-4 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 rounded-full shadow-lg shadow-gold-500/40 group-hover:scale-110 transition-all duration-300">
+                  <stat.icon className="w-6 h-6 lg:w-8 lg:h-8 text-black" />
                 </div>
               </div>
               
-              {/* Contenu avec espacement fixe */}
-              <div className="flex-1 flex flex-col justify-center">
-                <div className="text-4xl md:text-5xl font-semibold text-gold-400 mb-2 group-hover:text-gold-300 transition-colors duration-300" style={{ minHeight: '60px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              {/* Contenu avec espacement flexible */}
+              <div className="flex-1 flex flex-col justify-center space-y-3">
+                <div className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gold-400 group-hover:text-gold-300 transition-colors duration-300">
                   {stat.value}
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-gray-100 transition-colors duration-300" style={{ minHeight: '60px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+                <h3 className="text-base md:text-lg lg:text-xl font-semibold text-white group-hover:text-gray-100 transition-colors duration-300 leading-tight px-2">
                   {stat.label}
                 </h3>
-                <div className="text-gray-200 text-sm group-hover:text-gray-100 transition-colors duration-300 font-normal" style={{ minHeight: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+                <div className="text-sm md:text-base text-gray-200 group-hover:text-gray-100 transition-colors duration-300 font-normal leading-relaxed px-2">
                   {stat.description}
                 </div>
               </div>

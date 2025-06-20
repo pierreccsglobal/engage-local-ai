@@ -17,6 +17,7 @@ const ThirdPartyScripts: React.FC = () => {
             function gtag(...args: any[]) {
               window.dataLayer.push(arguments);
             }
+            window.gtag = gtag;
             gtag('js', new Date());
             gtag('config', 'G-XQPZGBB86E');
           };
@@ -35,13 +36,6 @@ const ThirdPartyScripts: React.FC = () => {
         }
       }, 7000);
     };
-
-    // Déclaration des types pour window
-    declare global {
-      interface Window {
-        dataLayer: any[];
-      }
-    }
 
     window.addEventListener('load', loadGoogleAnalytics);
     window.addEventListener('load', loadCalendly);

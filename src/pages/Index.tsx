@@ -7,10 +7,13 @@ import TestimonialsSection from '@/components/TestimonialsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import Chatbot from '@/components/Chatbot';
+import SkipNavigation from '@/components/SkipNavigation';
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-zinc-900 to-black">
+      <SkipNavigation />
+      
       <header role="banner">
         <nav role="navigation" aria-label="Navigation principale" id="main-navigation">
           <ul className="sr-only focus-within:not-sr-only focus-within:fixed focus-within:top-4 focus-within:left-4 focus-within:bg-zinc-900 focus-within:border focus-within:border-gold-400 focus-within:rounded focus-within:p-4 focus-within:space-y-2 focus-within:z-50">
@@ -43,7 +46,6 @@ const Index = () => {
       </header>
       
       <main id="main-content" role="main" tabIndex={-1}>
-        {/* Sections avec hauteurs minimales réservées pour éviter CLS */}
         <section id="hero" aria-labelledby="hero-heading" style={{ minHeight: '100vh' }}>
           <HeroSection />
         </section>

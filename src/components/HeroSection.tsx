@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Bot, Zap, Target } from 'lucide-react';
 import Logo from './Logo';
@@ -13,7 +12,7 @@ const HeroSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   
-  const fullText = "Transformez Vos Visiteurs en Clients";
+  const fullText = "Création d'un système IA sur-mesure pour doubler votre chiffre d'affaires";
 
   useEffect(() => {
     // Animation machine à écrire avec performance optimisée
@@ -83,7 +82,7 @@ const HeroSection = () => {
         <h1 id="hero-heading" className="hero-title text-5xl md:text-7xl font-semibold text-white leading-tight animate-fade-in animation-delay-200">
           <span className="relative">
             {displayedText.split(' ').map((word, index) => {
-              if (word === 'Visiteurs' || word === 'Clients') {
+              if (word === 'IA' || word === 'doubler' || word === 'chiffre' || word === "d'affaires") {
                 return (
                   <span key={index} className="bg-gradient-to-r from-gold-400 via-gold-500 to-gold-300 bg-clip-text text-transparent">
                     {word}{' '}
@@ -99,8 +98,7 @@ const HeroSection = () => {
         </h1>
 
         <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-4xl mx-auto leading-relaxed animate-fade-in animation-delay-400 font-normal">
-          L'agence web spécialisée en IA conversationnelle. Nous créons votre site web puis 
-          déployons des agents IA 24/7 pour maximiser vos conversions.
+          Sans augmenter votre budget publicitaire grâce à un trafic 100% organique
         </p>
 
         {/* Boutons CTA déplacés ici, juste après le sous-titre */}

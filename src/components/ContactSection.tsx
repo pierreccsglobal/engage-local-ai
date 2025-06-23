@@ -60,7 +60,7 @@ const ContactSection = () => {
         
         // Initialiser le widget
         window.Calendly.initInlineWidget({
-          url: 'https://calendly.com/creatoreconomy/nouvelle-reunion?primary_color=ecc14e',
+          url: 'https://app.genesis-consulting-group.fr/widget/bookings/appel/decouverte/leadprospect',
           parentElement: calendlyRef.current,
           prefill: {},
           utm: {}
@@ -93,7 +93,7 @@ const ContactSection = () => {
   }, []);
 
   const handleCalendlyClick = () => {
-    window.open('https://calendly.com/creatoreconomy/nouvelle-reunion?primary_color=ecc14e', '_blank', 'noopener,noreferrer');
+    window.open('https://app.genesis-consulting-group.fr/widget/bookings/appel/decouverte/leadprospect', '_blank', 'noopener,noreferrer');
   };
 
   return (

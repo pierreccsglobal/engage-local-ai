@@ -12,7 +12,7 @@ const HeroSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   
-  const fullText = "Création d'un système IA sur-mesure pour doubler votre chiffre d'affaires";
+  const fullText = "Création d'un système IA sur-mesure pour augmenter votre chiffre d'affaires";
 
   useEffect(() => {
     // Animation machine à écrire avec performance optimisée
@@ -82,7 +82,7 @@ const HeroSection = () => {
         <h1 id="hero-heading" className="hero-title text-4xl md:text-6xl lg:text-7xl font-semibold text-white leading-tight animate-fade-in animation-delay-200 px-4">
           <span className="relative block">
             {displayedText.split(' ').map((word, index) => {
-              if (word === 'IA' || word === 'doubler' || word === 'chiffre' || word === "d'affaires") {
+              if (word === 'IA' || word === 'augmenter' || word === 'chiffre' || word === "d'affaires") {
                 return (
                   <span key={index} className="bg-gradient-to-r from-gold-400 via-gold-500 to-gold-300 bg-clip-text text-transparent">
                     {word}{' '}

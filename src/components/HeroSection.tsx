@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Bot, Zap, Target } from 'lucide-react';
 import Logo from './Logo';
@@ -62,29 +61,44 @@ const HeroSection = () => {
   };
 
   const openChatbot = () => {
-    // Chercher le widget LeadConnector et le déclencher
-    const leadConnectorWidget = document.querySelector('[data-widget-id="685a73574327f9b16beb8de2"]');
-    if (leadConnectorWidget) {
-      // Essayer de déclencher l'ouverture du chat
-      const chatButton = document.querySelector('.leadconnector-chat-button, .lc-chat-button, [class*="chat-button"], [class*="widget-button"]');
-      if (chatButton) {
-        (chatButton as HTMLElement).click();
-      } else {
-        // Si pas de bouton spécifique trouvé, essayer de déclencher l'événement sur le widget
-        const event = new Event('click', { bubbles: true });
-        leadConnectorWidget.dispatchEvent(event);
+    // Attendre que le widget soit chargé et essayer plusieurs approches
+    const tryOpenChatbot = () => {
+      // Approche 1: Chercher le widget par son ID
+      const widget = document.querySelector('[data-widget-id="685a73574327f9b16beb8de2"]');
+      if (widget) {
+        widget.click();
+        return true;
       }
-    } else {
-      // Fallback : essayer de déclencher par d'autres moyens
-      console.log('Tentative d\'ouverture du chatbot LeadConnector...');
-      // Chercher tous les éléments potentiels du chat
-      const possibleChatElements = document.querySelectorAll('[id*="chat"], [class*="chat"], [data-widget], iframe[src*="leadconnector"]');
-      possibleChatElements.forEach(element => {
-        if (element) {
-          const event = new Event('click', { bubbles: true });
-          element.dispatchEvent(event);
+
+      // Approche 2: Chercher les boutons de chat communs
+      const chatButtons = document.querySelectorAll('button[class*="chat"], div[class*="chat-button"], [role="button"][class*="chat"]');
+      if (chatButtons.length > 0) {
+        (chatButtons[0] as HTMLElement).click();
+        return true;
+      }
+
+      // Approche 3: Chercher les iframes LeadConnector
+      const iframes = document.querySelectorAll('iframe[src*="leadconnector"], iframe[src*="beta.leadconnectorhq.com"]');
+      if (iframes.length > 0) {
+        // Déclencher un événement sur l'iframe
+        const event = new Event('click', { bubbles: true });
+        iframes[0].dispatchEvent(event);
+        return true;
+      }
+
+      return false;
+    };
+
+    // Essayer immédiatement
+    if (!tryOpenChatbot()) {
+      // Si ça ne marche pas, attendre un peu et réessayer
+      setTimeout(() => {
+        if (!tryOpenChatbot()) {
+          console.log('Le chatbot LeadConnector n\'est pas encore disponible');
+          // Comme fallback, rediriger vers la section contact
+          scrollToContact();
         }
-      });
+      }, 1000);
     }
   };
 

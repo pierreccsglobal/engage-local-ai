@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Bot, Zap, Target } from 'lucide-react';
 import Logo from './Logo';
@@ -64,7 +65,7 @@ const HeroSection = () => {
     // Attendre que le widget soit chargé et essayer plusieurs approches
     const tryOpenChatbot = () => {
       // Approche 1: Chercher le widget par son ID
-      const widget = document.querySelector('[data-widget-id="685a73574327f9b16beb8de2"]');
+      const widget = document.querySelector('[data-widget-id="685a73574327f9b16beb8de2"]') as HTMLElement;
       if (widget) {
         widget.click();
         return true;

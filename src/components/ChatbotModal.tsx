@@ -34,10 +34,10 @@ const ChatbotModal = ({ isOpen, onClose }: ChatbotModalProps) => {
         setTimeout(() => {
           const chatWidget = document.querySelector('[data-widget-id="685a73574327f9b16beb8de2"]');
           if (chatWidget && chatContainerRef.current) {
-            chatWidget.style.display = 'block';
-            chatWidget.style.position = 'relative';
-            chatWidget.style.width = '100%';
-            chatWidget.style.height = '100%';
+            (chatWidget as HTMLElement).style.display = 'block';
+            (chatWidget as HTMLElement).style.position = 'relative';
+            (chatWidget as HTMLElement).style.width = '100%';
+            (chatWidget as HTMLElement).style.height = '100%';
           }
         }, 1000);
       };

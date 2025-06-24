@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Bot, Zap, Target } from 'lucide-react';
 import Logo from './Logo';
@@ -61,9 +62,29 @@ const HeroSection = () => {
   };
 
   const openChatbot = () => {
-    const chatbotButton = document.querySelector('[data-chatbot-trigger]');
-    if (chatbotButton) {
-      (chatbotButton as HTMLElement).click();
+    // Chercher le widget LeadConnector et le déclencher
+    const leadConnectorWidget = document.querySelector('[data-widget-id="685a73574327f9b16beb8de2"]');
+    if (leadConnectorWidget) {
+      // Essayer de déclencher l'ouverture du chat
+      const chatButton = document.querySelector('.leadconnector-chat-button, .lc-chat-button, [class*="chat-button"], [class*="widget-button"]');
+      if (chatButton) {
+        (chatButton as HTMLElement).click();
+      } else {
+        // Si pas de bouton spécifique trouvé, essayer de déclencher l'événement sur le widget
+        const event = new Event('click', { bubbles: true });
+        leadConnectorWidget.dispatchEvent(event);
+      }
+    } else {
+      // Fallback : essayer de déclencher par d'autres moyens
+      console.log('Tentative d\'ouverture du chatbot LeadConnector...');
+      // Chercher tous les éléments potentiels du chat
+      const possibleChatElements = document.querySelectorAll('[id*="chat"], [class*="chat"], [data-widget], iframe[src*="leadconnector"]');
+      possibleChatElements.forEach(element => {
+        if (element) {
+          const event = new Event('click', { bubbles: true });
+          element.dispatchEvent(event);
+        }
+      });
     }
   };
 

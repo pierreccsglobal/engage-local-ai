@@ -13,9 +13,9 @@ interface SEOHeadProps {
 }
 
 const SEOHead: React.FC<SEOHeadProps> = ({
-  title = "Lead Prospect - Système IA Sur-Mesure pour Doubler Votre CA",
+  title = "Lead Prospect – Agence Web & IA pour Entreprises Locales",
   description = "Création d'un système IA sur-mesure pour doubler votre chiffre d'affaires sans augmenter votre budget publicitaire. Trafic 100% organique garanti.",
-  ogTitle = "Lead Prospect - Système IA Sur-Mesure pour Doubler Votre CA",
+  ogTitle = "Lead Prospect – Agence Web & IA pour Entreprises Locales",
   ogDescription = "Création d'un système IA sur-mesure pour doubler votre chiffre d'affaires sans augmenter votre budget publicitaire. Trafic 100% organique, ROI x5 garanti.",
   twitterDescription = "Création d'un système IA sur-mesure pour doubler votre chiffre d'affaires. Trafic 100% organique, sans budget publicitaire.",
   imageUrl = "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=630&fit=crop&crop=center&auto=format&fm=webp&q=80",

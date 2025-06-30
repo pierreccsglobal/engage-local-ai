@@ -14,7 +14,7 @@ interface SEOHeadProps {
 
 const SEOHead: React.FC<SEOHeadProps> = ({
   title = "Lead Prospect – Agence Web & IA pour Entreprises Locales",
-  description = "Création d'un système IA sur-mesure pour doubler votre chiffre d'affaires sans augmenter votre budget publicitaire. Trafic 100% organique garanti.",
+  description = "Agence web et digitale spécialisée en création de site, SEO, Google Ads, prospection et leads via IA. Boostez votre chiffre d'affaires BtoC & BtoB !",
   ogTitle = "Lead Prospect – Agence Web & IA pour Entreprises Locales",
   ogDescription = "Création d'un système IA sur-mesure pour doubler votre chiffre d'affaires sans augmenter votre budget publicitaire. Trafic 100% organique, ROI x5 garanti.",
   twitterDescription = "Création d'un système IA sur-mesure pour doubler votre chiffre d'affaires. Trafic 100% organique, sans budget publicitaire.",
